@@ -1,11 +1,12 @@
-# Rnosave combine_df.R -N MODEL -l mem_free=80G,h_vmem=81G -hold_jid PROC
 library(here)
+library(ichseg)
 library(dplyr)
 library(tidyr)
 library(readr)
 library(caret)
 library(neurobase)
 library(ranger)
+library(ROCR)
 
 set.seed(20180227)
 # root_dir <- "~/CLEAR_PITCH"
@@ -32,21 +33,37 @@ df = df %>%
   spread(type, file)
 
 n_ids = min(12, nrow(df))
-
-df = df[ seq(n_ids), ]
+keep_rows = 13:nrow(df)
+df = df[ keep_rows, ]
 
 df$id_proc_dir = file.path(proc_dir, df$id)
 df$stub = sub("_CT", "", nii.stub(df$CT, bn = TRUE))
 df$rds = file.path(df$id_proc_dir,
   paste0(df$stub, "_",  "predictor_df.rds"))
 
-all_df = vector(mode = "list",
-	length = n_ids)
-names(all_df) = df$scan
 
-for (iid in seq(n_ids)) {
+mod_file = file.path(root_dir, 
+  "ranger_model.rds")
+model = read_rds(mod_file)
+
+all_df = vector(mode = "list",
+	length = length(keep_rows))
+names(all_df) = df$scan
+iid = 1
+
+for (iid in seq(length(keep_rows))) {
 	print(iid)
 	proc_df = read_rds(df$rds[iid])
+  proc_df$candidate = ich_candidate_voxels(proc_df)
+  p = predict(model, newdata = proc_df, 
+    type = "prob")
+  p = p[, "lesion"]
+  proc_df$p = p
+  p = predict(rf_modlist$mod,
+    newdata = proc_df, type = "prob")
+  proc_df$p2 = p[, "1"]
+  proc_df = proc_df %>% 
+    select(p, p2, Y, candidate)
 	all_df[[iid]] = proc_df
 	rm(proc_df); 
 }
@@ -57,40 +74,20 @@ full_df$y = ifelse(full_df$Y > 0,
 	"lesion", "non_lesion")
 full_df$y = factor(full_df$y)
 
-samp = full_df %>% 
-	group_by(scan, Y) %>% 
-	sample_frac(size = 0.1) %>% 
-	ungroup()
+pred = prediction(full_df$p, full_df$Y)
+perf = performance(pred, "tpr", "fpr")
+auc = performance(pred, "auc", fpr.stop = 0.01)
+unlist(auc@y.values[[1]])/0.01
+perf = performance(pred, "tpr", "fpr")
 
-print(nrow(samp))
 
-cn = colnames(full_df)
-keep = !cn%in% c("mask", "scan", "Y")
-xdf = full_df[, !keep]
-full_df = full_df[, keep]
+sub_df = full_df  %>% 
+  filter(candidate > 0 | Y > 0)
 
-xsamp = samp[, !keep]
-samp = samp[, keep]
+sub_pred = prediction(sub_df$p, sub_df$Y)
+sub_perf = performance(sub_pred, "tpr", "fpr")
+sub_auc = performance(sub_pred, "auc", fpr.stop = 0.01)
+unlist(sub_auc@y.values[[1]])/0.01
+sub_perf = performance(sub_pred, "tpr", "fpr")
 
-# mod = ranger(Y ~ ., data = samp)
-# mod = ranger(Y ~ ., data = full_df)
-rm(full_df); gc()
-# Create custom trainControl: myControl
-myControl <- trainControl(
-  method = "cv", number = 5,
-  summaryFunction = twoClassSummary,
-  classProbs = TRUE, # IMPORTANT!
-  verboseIter = TRUE
-)
-
-model <- train(
-  y ~ .,
-  tuneLength = 1,
-  data = samp, method = "ranger",
-  trControl = myControl
-)
-
-outfile = file.path(root_dir, 
-	"ranger_model.rds")
-write_rds(model, path = outfile)
 
