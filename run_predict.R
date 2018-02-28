@@ -40,7 +40,8 @@ df$id_proc_dir = file.path(proc_dir, df$id)
 df$stub = sub("_CT", "", nii.stub(df$CT, bn = TRUE))
 df$rds = file.path(df$id_proc_dir,
   paste0(df$stub, "_",  "predictor_df.rds"))
-
+df$ufile = file.path(df$id_proc_dir, 
+  paste0(df$stub, "_usemask.nii.gz"))
 
 mod_file = file.path(root_dir, 
   "ranger_model.rds")
@@ -50,6 +51,8 @@ all_df = vector(mode = "list",
 	length = length(keep_rows))
 names(all_df) = df$scan
 iid = 1
+
+all_masks = all_df
 
 for (iid in seq(length(keep_rows))) {
 	print(iid)
@@ -65,7 +68,14 @@ for (iid in seq(length(keep_rows))) {
   proc_df = proc_df %>% 
     select(p, p2, Y, candidate)
 	all_df[[iid]] = proc_df
-	rm(proc_df); 
+  
+  mask = readnii(df$ufile[iid])
+  prob_img = remake_img(proc_df$p, mask, mask)
+  all_masks[[iid]] = mask
+  rm(mask)
+
+  rm(proc_df); 
+
 }
 
 full_df = bind_rows(all_df, .id = "scan")
@@ -74,20 +84,22 @@ full_df$y = ifelse(full_df$Y > 0,
 	"lesion", "non_lesion")
 full_df$y = factor(full_df$y)
 
-pred = prediction(full_df$p, full_df$Y)
-perf = performance(pred, "tpr", "fpr")
-auc = performance(pred, "auc", fpr.stop = 0.01)
-unlist(auc@y.values[[1]])/0.01
-perf = performance(pred, "tpr", "fpr")
+run_roc = function(x, y, fpr.stop = 0.01) {
+  pred = prediction(x, y)
+  auc = performance(pred, "auc", 
+    fpr.stop = fpr.stop)
+  pauc = unlist(auc@y.values[[1]])/fpr.stop
+  print(pauc)
+  perf = performance(pred, "tpr", "fpr")
+  return(perf)
+}
 
+
+perf = run_roc(full_df$p, full_df$Y)
+perf2 = run_roc(full_df$p2, full_df$Y)
 
 sub_df = full_df  %>% 
   filter(candidate > 0 | Y > 0)
 
-sub_pred = prediction(sub_df$p, sub_df$Y)
-sub_perf = performance(sub_pred, "tpr", "fpr")
-sub_auc = performance(sub_pred, "auc", fpr.stop = 0.01)
-unlist(sub_auc@y.values[[1]])/0.01
-sub_perf = performance(sub_pred, "tpr", "fpr")
-
-
+sub_perf = run_roc(sub_df$p, sub_df$Y)
+sub_perf2 = run_roc(sub_df$p2, sub_df$Y)  
