@@ -1,0 +1,85 @@
+library(haven)
+library(dplyr)
+library(readr)
+
+set.seed(20180129)
+data = read_dta("Subject_Demographics_and_Clinical_History.dta")
+data = as_factor(data)
+cn = c("patientName", "Index_Clot_Location_Site",
+       "Index_Clot_Location_RC", "Stability_Total_Blood_Volume_RC", 
+       "Stability_ICH_Volume_RC", "Stability_IVH_Volume_RC", 
+       "other_ich_location_RC", 
+       "other_ich_location_Site")
+data = data[, cn]
+
+data$pid = data$patientName %% 1000
+data$first_250 = data$pid <= 250
+xdata = data
+
+data = xdata %>% filter(first_250)
+
+med = median(data$Stability_Total_Blood_Volume_RC)
+
+data$large = data$Stability_Total_Blood_Volume_RC >= med
+
+data$other_ich_location_RC = tolower(data$other_ich_location_RC)
+data$other_ich_location_Site = tolower(data$other_ich_location_Site)
+
+data = data %>% 
+  mutate(Index_Clot_Location_RC = as.character(Index_Clot_Location_RC),
+         Index_Clot_Location_Site = as.character(Index_Clot_Location_Site),
+         Index_Clot_Location_RC = recode(
+           Index_Clot_Location_RC,
+           "Globus Pallidus" = "Deep",
+           Putamen = "Deep",
+           "Caudate" = "Deep",
+           "Frontal" = "Lobar",
+           "Temporal" = "Lobar",
+           Occipital = "Lobar",
+           Parietal = "Lobar"
+         ),
+         Index_Clot_Location_Site = recode(
+           Index_Clot_Location_Site,
+           "Globus Pallidus" = "Deep",
+           Putamen = "Deep",
+           "Caudate" = "Deep",
+           "Frontal" = "Lobar",
+           "Temporal" = "Lobar",
+           Occipital = "Lobar",
+           Parietal = "Lobar"
+         )
+  )
+
+data = data %>% 
+  mutate(
+    # fill in NA
+    Index_Clot_Location_RC = if_else(
+      is.na(Index_Clot_Location_RC),
+      Index_Clot_Location_Site, 
+      Index_Clot_Location_RC),
+    # fill in other
+    Index_Clot_Location_RC = if_else(
+      Index_Clot_Location_RC == "Other",
+      Index_Clot_Location_Site, Index_Clot_Location_RC
+    ),
+    Index_Clot_Location_RC = if_else(
+      Index_Clot_Location_RC == "Other" & 
+        grepl("corona radaita", other_ich_location_Site),
+      "Deep", Index_Clot_Location_RC
+    )
+  )
+
+################
+# removing lobar
+samp = data %>%
+  filter(Index_Clot_Location_RC != "Lobar") %>% 
+  group_by(Index_Clot_Location_RC, large) %>% 
+  sample_n(4) %>% 
+  arrange(pid) %>% 
+  ungroup
+samp = samp %>% 
+  select(patientName, Index_Clot_Location_RC, large)
+samp = samp %>% 
+  select(patientName)
+write_csv(samp, path = "initial_sample.csv")
+
