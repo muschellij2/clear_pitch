@@ -12,7 +12,7 @@ library(extrantsr)
 root_dir = here::here()
 img_dir = file.path(root_dir, "original")
 proc_dir = file.path(root_dir, "processed")
-n4 = FALSE
+n4 = TRUE
 
 imgs = list.files(
   path = img_dir,
@@ -41,7 +41,7 @@ df$outfile = file.path(df$id_proc_dir,
 n_ids = nrow(df)
 iid = as.numeric(Sys.getenv("SGE_TASK_ID"))
 if (is.na(iid)) {
-  iid = 19
+  iid = 8
 }
 
 id = df$id[iid]
