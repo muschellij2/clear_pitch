@@ -3,3 +3,4 @@
 .RData
 .Ruserdata
 Subject_Demographics_and_Clinical_History.dta
+results/*.png
