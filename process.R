@@ -5,12 +5,14 @@ library(dplyr)
 library(tidyr)
 library(neurobase)
 library(readr)
+library(extrantsr)
 
 
 # root_dir <- "~/CLEAR_PITCH"
 root_dir = here::here()
 img_dir = file.path(root_dir, "original")
 proc_dir = file.path(root_dir, "processed")
+n4 = FALSE
 
 imgs = list.files(
   path = img_dir,
@@ -39,7 +41,7 @@ df$outfile = file.path(df$id_proc_dir,
 n_ids = nrow(df)
 iid = as.numeric(Sys.getenv("SGE_TASK_ID"))
 if (is.na(iid)) {
-  iid = 1
+  iid = 19
 }
 
 id = df$id[iid]
@@ -55,18 +57,41 @@ mask_file = file.path(id_proc_dir,
   "brain_mask.nii.gz")
 outfiles = c(ss_file, mask_file)
 stub = sub("_CT", "", nii.stub(img, bn = TRUE))
-outprefix = sub("_CT", "_", nii.stub(img))
+
+ufile = file.path(id_proc_dir, 
+  paste0(stub, "_usemask.nii.gz"))
+
 
 if (file.exists(mask_file)) {
   mask = mask_file
 } else {
   mask = NULL
 }
-outfile = file.path(id_proc_dir,
-  paste0(stub, "_",  "predictor_df.rds"))
 
-ufile = file.path(id_proc_dir, 
-  paste0(stub, "_usemask.nii.gz"))
+if (n4) {
+  img = readnii(img)
+  brain_mask = readnii(mask_file)
+  img = mask_img(img, mask = brain_mask)
+  img[ img < 0] = 0  
+  # n4 = bias_correct(img, correction = "N4",
+  #   mask = brain_mask)
+  img = window_img(img, c(0, 100))
+  n4_2 = bias_correct(img, correction = "N4",
+    mask = brain_mask)
+  img = n4_2
+  stub = paste0(stub, "_n4")
+}
+
+outprefix = file.path(
+  id_proc_dir,
+  paste0(stub, "_")
+  )
+
+outfile = file.path(id_proc_dir,
+  paste0(stub, "_",  
+    "predictor_df.rds"))
+
+
 
 if (!file.exists(outfile)) {
 
