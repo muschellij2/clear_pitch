@@ -12,7 +12,7 @@ set.seed(20180227)
 root_dir = here::here()
 img_dir = file.path(root_dir, "original")
 proc_dir = file.path(root_dir, "processed")
-n4 = TRUE
+n4 = FALSE
 run_frac = 0.1
 
 imgs = list.files(
