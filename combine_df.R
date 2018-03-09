@@ -21,13 +21,14 @@ run_fracs = c(0.1)
 eg = expand.grid(n4 = c(FALSE, TRUE),
   run_frac = run_fracs, 
   stratified = c(FALSE, TRUE),
+  groups = groups,
   stringsAsFactors = FALSE)
 eg = eg %>% 
   mutate(outfile = file.path(root_dir, 
     paste0("ranger_", 
       ifelse(n4, "n4_", ""), 
       ifelse(run_frac != 0.1, 
-        paste0(egrun_frac, "_"),  ""),
+        paste0(run_frac, "_"),  ""),
       ifelse(stratified, "stratified_", ""),    
     "model.rds")))
   

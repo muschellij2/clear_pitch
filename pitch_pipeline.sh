@@ -12,3 +12,5 @@ Rnosave combine_df.R -N MODEL -t 1-4 \
 Rnosave run_predict.R -N PRED -t 1-4 \
 	-l mem_free=50G,h_vmem=51G -hold_jid MODEL
 
+Rnosave run_predict.R -N TEST_PRED -t 5-8 \
+	-l mem_free=50G,h_vmem=51G -hold_jid PRED

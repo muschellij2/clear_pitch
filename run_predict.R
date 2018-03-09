@@ -22,10 +22,25 @@ if (is.na(iscen)) {
   iscen = 1
 }
 groups = c("train", "test")
+run_frac = 0.1
 eg = expand.grid(n4 = c(FALSE, TRUE),
-  group = groups, stringsAsFactors = FALSE)
+  run_frac = run_frac,
+  stratified = c(FALSE, TRUE),
+  group = groups,   
+  stringsAsFactors = FALSE)
 n4 = eg$n4[iscen]
 group = eg$group[iscen]
+stratified = eg$stratified[iscen]
+run_frac = eg$run_frac[iscen]
+eg = eg %>% 
+  mutate(outfile = file.path(root_dir, 
+    paste0("ranger_", 
+      ifelse(n4, "n4_", ""), 
+      ifelse(run_frac != 0.1, 
+        paste0(run_frac, "_"),  ""),
+      ifelse(stratified, "stratified_", ""),    
+    "model.rds")))
+mod_file = eg$outfile[iscen]
 
 
 imgs = list.files(
@@ -76,6 +91,9 @@ df$reg_brain_mask = file.path(df$id_proc_dir,
 perf_file = file.path(root_dir, 
   paste0("ranger_performance_", 
     ifelse(n4, "n4_", ""),
+    ifelse(run_frac != 0.1, 
+      paste0(run_frac, "_"),  ""),
+    ifelse(stratified, "stratified_", ""),     
     "train", ".rds"))
 if (file.exists(perf_file)) {
   x = read_rds(perf_file)
@@ -87,6 +105,9 @@ if (file.exists(perf_file)) {
 perf_file = file.path(root_dir, 
   paste0("ranger_performance_", 
     ifelse(n4, "n4_", ""),
+    ifelse(run_frac != 0.1, 
+      paste0(run_frac, "_"),  ""),
+    ifelse(stratified, "stratified_", ""),     
     "smoothed_", "train", ".rds"))
 if (file.exists(perf_file)) {
   x = read_rds(perf_file)
@@ -94,11 +115,6 @@ if (file.exists(perf_file)) {
 } else {
   smooth_cutoff = ifelse(n4, 0.3811111, 0.3737037)
 }
-
-
-mod_file = file.path(root_dir, 
-  paste0("ranger_", ifelse(n4, "n4_", ""), 
-    "model.rds"))
 
 model = read_rds(mod_file)
 
@@ -258,6 +274,9 @@ dice_df$n4 = n4
 outfile = file.path(root_dir, 
   paste0("dice_", 
     ifelse(n4, "n4_", ""),
+    ifelse(run_frac != 0.1, 
+      paste0(run_frac, "_"),  ""),
+    ifelse(stratified, "stratified_", ""), 
     group, ".rds"))
 write_rds(dice_df, path = outfile)
 
@@ -273,12 +292,18 @@ sub_perf2$dice = tab_dice(tab)
 outfile = file.path(root_dir, 
   paste0("ranger_performance_", 
     ifelse(n4, "n4_", ""),
+    ifelse(run_frac != 0.1, 
+      paste0(run_frac, "_"),  ""),
+    ifelse(stratified, "stratified_", ""),    
     group, ".rds"))
 write_rds(sub_perf, path = outfile)
 
 outfile = file.path(root_dir, 
   paste0("ranger_performance_", 
     ifelse(n4, "n4_", ""),
+    ifelse(run_frac != 0.1, 
+      paste0(run_frac, "_"),  ""),
+    ifelse(stratified, "stratified_", ""),    
     "smoothed_",
     group, ".rds"))
 write_rds(sub_perf2, path = outfile)
@@ -287,10 +312,16 @@ write_rds(sub_perf2, path = outfile)
 outfiles = file.path(res_dir,
   paste0(names(all_imgs), 
     ifelse(n4, "_n4", ""),
+    ifelse(run_frac != 0.1, 
+      paste0(run_frac, "_"),  ""),
+    ifelse(stratified, "stratified_", ""),     
     "_prediction.png"))
 compare_files = file.path(res_dir,
   paste0(names(all_imgs), 
     ifelse(n4, "_n4", ""),
+    ifelse(run_frac != 0.1, 
+      paste0(run_frac, "_"),  ""),
+    ifelse(stratified, "stratified_", ""),     
     "_image.png"))
 mapply(function(img, mask, pred, roi,
   fname, fname2) {
