@@ -1,4 +1,4 @@
-# Rnosave combine_df.R -N MODEL -l mem_free=100G,h_vmem=101G -hold_jid PROC
+# Running the models
 library(here)
 library(dplyr)
 library(tidyr)
@@ -12,8 +12,30 @@ set.seed(20180227)
 root_dir = here::here()
 img_dir = file.path(root_dir, "original")
 proc_dir = file.path(root_dir, "processed")
-n4 = FALSE
-run_frac = 0.1
+iscen = as.numeric(Sys.getenv("SGE_TASK_ID"))
+if (is.na(iscen)) {
+  iscen = 1
+}
+groups = c("train", "test")
+run_fracs = c(0.1)
+eg = expand.grid(n4 = c(FALSE, TRUE),
+  run_frac = run_fracs, 
+  stratified = c(FALSE, TRUE),
+  stringsAsFactors = FALSE)
+eg = eg %>% 
+  mutate(outfile = file.path(root_dir, 
+    paste0("ranger_", 
+      ifelse(n4, "n4_", ""), 
+      ifelse(run_frac != 0.1, 
+        paste0(egrun_frac, "_"),  ""),
+      ifelse(stratified, "stratified_", ""),    
+    "model.rds")))
+  
+outfile = eg$outfile[iscen]
+n4 = eg$n4[iscen]
+run_frac = eg$run_frac[iscen]
+stratified = eg$stratified[iscen]
+
 
 imgs = list.files(
   path = img_dir,
@@ -65,15 +87,53 @@ full_df$y = ifelse(full_df$Y > 0,
 full_df$y = factor(full_df$y,
   levels = c( "non_lesion", "lesion"))
 
-samp = full_df %>% 
-	group_by(scan, Y) %>% 
-	sample_frac(size = run_frac) %>% 
-	ungroup()
+
+if (stratified) {
+  cn = colnames(full_df)
+  cn = setdiff(cn, c("scan", "Y", "y", "mask", "id"))
+  quant_vars = full_df[,cn]
+  lgls = sapply(quant_vars, function(x) {
+    all(x == as.logical(x))
+  })
+  lgl_df = quant_vars[, lgls]
+  lgl_df = lgl_df %>% 
+    transmute_all(funs(med = as.logical))
+  quant_vars = quant_vars[, !lgls]
+  quant_vars = quant_vars %>% 
+    transmute_all(funs(med = . > median(.)))
+
+  full_df = bind_cols(
+    full_df,
+    quant_vars, 
+    lgl_df)
+
+  add_cols = c(colnames(quant_vars),
+    colnames(lgl_df))
+
+  groupers = c("scan", "Y", add_cols)
+
+  samp = full_df %>% 
+  	group_by_(groupers) %>% 
+  	sample_frac(size = run_frac) %>% 
+  	ungroup()
+
+
+  samp = samp %>% 
+    select(-ends_with("med"))
+  full_df = full_df %>% 
+    select(-ends_with("med"))  
+} else {
+
+  samp = full_df %>% 
+  group_by(scan, Y) %>% 
+  sample_frac(size = run_frac) %>% 
+  ungroup()
+}
 
 print(nrow(samp))
 
 cn = colnames(full_df)
-keep = !cn%in% c("mask", "scan", "Y")
+keep = !cn %in% c("mask", "scan", "Y")
 xdf = full_df[, !keep]
 full_df = full_df[, keep]
 
@@ -99,8 +159,8 @@ model <- train(
   y = y,
   tuneLength = 1,
   method = "ranger",
-  trControl = myControl,
-  save.memory = TRUE
+  trControl = myControl
+  # save.memory = TRUE
 )
 
 # model <- train(
@@ -111,10 +171,5 @@ model <- train(
 #   save.memory = TRUE
 # )
 
-outfile = file.path(root_dir, 
-	paste0("ranger_", ifelse(n4, "n4_", ""), 
-    ifelse(size != 0.1, paste0("_", run_frac), 
-      ""),
-    "model.rds"))
 write_rds(model, path = outfile)
 
