@@ -35,7 +35,7 @@ eg = eg %>%
       ifelse(stratified, "stratified_", ""),    
       app,
     "model.rds")))
-  
+
 outfile = eg$outfile[iscen]
 n4 = eg$n4[iscen]
 run_frac = eg$run_frac[iscen]
