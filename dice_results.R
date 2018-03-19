@@ -16,22 +16,34 @@ res_dir = file.path(root_dir, "results")
 
 
 groups = c("train", "test")
-eg = expand.grid(n4 = c(FALSE, TRUE),
-  group = groups, stringsAsFactors = FALSE)
+run_frac = 0.1
+eg = expand.grid(
+  n4 = c(FALSE, TRUE),
+  run_frac = run_frac,
+  stratified = c(FALSE, TRUE),
+  group = groups,   
+  stringsAsFactors = FALSE)
+
+eg = eg %>% 
+  mutate(outfile = file.path(root_dir, 
+    paste0("dice_", 
+      ifelse(n4, "n4_", ""), 
+      ifelse(run_frac != 0.1, 
+        paste0(run_frac, "_"),  ""),
+      ifelse(stratified, "stratified_", ""),    
+      group,
+    ".rds")))
 
 res = vector(mode = "list", 
 	length = nrow(eg))
 for (iscen in seq(nrow(eg))) {
-
-	n4 = eg$n4[iscen]
-	group = eg$group[iscen]
-	outfile = file.path(root_dir, 
-	  paste0("dice_", 
-	    ifelse(n4, "n4_", ""),
-	    group, ".rds"))
-	x = read_rds(outfile)
-	x$group = group
-	res[[iscen]] = x
+	outfile = eg$outfile[iscen]
+	if (file.exists(outfile)) {
+		x = read_rds(outfile)
+		x$group = eg$group[iscen]
+		x$stratified = eg$stratified[iscen]
+		res[[iscen]] = x
+	}
 }
 
 df = bind_rows(res)
@@ -43,7 +55,11 @@ df$smooth = grepl("smooth", df$type)
 df$type = ifelse(grepl("dice", df$type), 
 	"dice", "volume")
 df = spread(df, type, value)
-df$n4 = ifelse(df$n4, "N4-corrected HU", "Standard HU")
+df$n4 = ifelse(df$n4, "N4-corrected HU", 
+	"Standard HU")
+df$stratified = ifelse(df$stratified, 
+	"Stratified Sampling", 
+	"Case-Control Sampling")
 df$n4 = factor(df$n4,
 	levels = c("Standard HU", "N4-corrected HU"))
 df$smooth = ifelse(df$smooth, 
@@ -55,7 +71,7 @@ df$diff_vol = (df$vol - df$volume)/1000
 df$avg_vol = (df$vol + df$volume) / (2 * 1000)
 
 sds = df %>% 
-	group_by(group, n4, smooth) %>% 
+	group_by(group, n4, smooth, stratified) %>% 
 	summarize(mn = mean(diff_vol, na.rm = TRUE),
 		sd = sd(diff_vol, na.rm = TRUE)) %>% 
 	mutate(
@@ -72,8 +88,8 @@ fname = file.path(res_dir,
 png(fname, res = 600, width = 5, height=5,
     units = "in", type = "cairo")
 dice = df %>% ggplot(
-	aes(y = dice,  x =n4, colour = smooth)) + 
-	geom_boxplot() + facet_wrap( ~ group)
+	aes(y = dice, x =n4, colour = smooth)) + 
+	geom_boxplot() + facet_wrap(stratified ~ group)
 print(dice)
 dev.off()
 
@@ -83,9 +99,22 @@ png(fname, res = 600, width = 5, height=5,
     units = "in", type = "cairo")	
 dice2 = df %>% ggplot(
 	aes(y = dice,  colour =n4, x = smooth)) + 
-	geom_boxplot() 	+ facet_wrap( ~ group)
+	geom_boxplot() 	+ 
+	facet_wrap(group ~ stratified)
 print(dice2)
 dev.off()
+
+fname = file.path(res_dir,
+	"dice_compare_stratified.png")
+png(fname, res = 600, width = 5, height=5,
+    units = "in", type = "cairo")	
+dice2 = df %>% ggplot(
+	aes(y = dice, 
+		colour = stratified, x = smooth)) + 
+	geom_boxplot() 	+ facet_wrap(n4 ~ group)
+print(dice2)
+dev.off()
+
 
 
 vol = df %>% ggplot(
@@ -103,9 +132,10 @@ vol = df %>% ggplot(
 
 fname = file.path(res_dir,
 	"volume_compare_free.png")
-png(fname, res = 600, width = 10, height=4,
+png(fname, res = 600, width = 12, height=4,
     units = "in", type = "cairo")	
-v1 = vol + facet_grid(group ~ n4 + smooth,
+v1 = vol + facet_grid(group ~ n4 + 
+	smooth + stratified,
 		scales = "free_y")
 print(v1)
 dev.off()
@@ -114,7 +144,8 @@ fname = file.path(res_dir,
 	"volume_compare.png")
 png(fname, res = 600, width = 10, height=4,
     units = "in", type = "cairo")	
-v2 = vol + facet_grid(group ~ n4 + smooth)
+v2 = vol + 
+	facet_grid(group ~ n4 + smooth + stratified)
 print(v2)
 dev.off()
 
@@ -139,7 +170,7 @@ ba = df %>% ggplot(
 			yintercept = upper),
 		linetype = "dashed") +	
 	geom_smooth(se = FALSE) +
-	facet_grid(n4 ~ smooth) +
+	facet_grid(n4 ~ smooth + stratified) +
 	ylab("Mean of Manual/Auto") +
 	xlab("Difference: Manual - Auto")
 print(ba)

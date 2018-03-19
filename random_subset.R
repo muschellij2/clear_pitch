@@ -16,7 +16,18 @@ data$pid = data$patientName %% 1000
 data$first_250 = data$pid <= 250
 xdata = data
 
-data = xdata %>% filter(first_250)
+init_file = "initial_sample.csv"
+outfile = "batches.csv"
+if (file.exists(init_file)) {
+  init = read_csv(init_file)
+  data = data %>% 
+    filter(!patientName %in% init$patientName)  
+  init = init %>%
+    select(patientName)
+  init$batch = 1
+}
+n_batches = ceiling(nrow(data)/ 50)
+# data = xdata %>% filter(first_250)
 
 med = median(data$Stability_Total_Blood_Volume_RC)
 
@@ -69,17 +80,37 @@ data = data %>%
     )
   )
 
+
+# samp = data %>%
+#   filter(Index_Clot_Location_RC != "Lobar") %>% 
+#   group_by(Index_Clot_Location_RC, large) %>% 
+#   sample_n(4) %>% 
+#   arrange(pid) %>% 
+#   ungroup
+# samp = samp %>% 
+#   select(patientName, Index_Clot_Location_RC, large)
+# samp = samp %>% 
+#   select(patientName)
+# write_csv(samp, path = outfile)
+
 ################
 # removing lobar
 samp = data %>%
-  filter(Index_Clot_Location_RC != "Lobar") %>% 
   group_by(Index_Clot_Location_RC, large) %>% 
-  sample_n(4) %>% 
+  # add 1 for initial batch
+  mutate(batch = sample.int(n_batches, size = n(),
+                            replace = TRUE) + 1) %>% 
   arrange(pid) %>% 
   ungroup
 samp = samp %>% 
-  select(patientName, Index_Clot_Location_RC, large)
+  select(patientName, Index_Clot_Location_RC, large, batch) %>% 
+  arrange(batch, patientName)
 samp = samp %>% 
-  select(patientName)
-write_csv(samp, path = "initial_sample.csv")
+  select(patientName, batch) %>% 
+  mutate(patientName = as.integer(patientName))
+samp = full_join(samp, init)
+stopifnot(!any(duplicated(samp$patientName)))
+samp = samp %>% 
+  arrange(batch, patientName)
+write_csv(samp, path = outfile)
 
