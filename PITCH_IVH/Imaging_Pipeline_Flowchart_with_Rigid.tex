@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{positioning}
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\begin{document}
+\pagestyle{empty}
+% Define block styles
+
+\tikzstyle{bblock} = [rectangle, draw, text width=8em, text centered, minimum height=2em, rounded corners]
+\tikzstyle{line} = [draw, text centered , -latex']
+\tikzstyle{line node} = [draw, fill=white, font=\tiny ]
+\tikzstyle{block} = [rectangle, draw, text width=5em, text centered, minimum height=4em, rounded corners]    
+
+
+
+\begin{tikzpicture}[node distance = 1.5cm, every node/.style={rectangle,fill=white}, scale=0.75, transform shape]
+
+% Place nodes
+\node [bblock] (raw) {DICOM Images};
+\node [bblock, below = 2.5cm of raw] (dcmnii) {NIfTI Image};
+%\node [bblock, below of=dcmnii] (thresh) {Threshold to 0-100 HU };
+\node [bblock, above right=1cm and 1.25cm of dcmnii] (gantry) {Gantry Tilt Correction};
+\node [bblock, below of=dcmnii] (BET) {BET for CT};
+
+%\node [block, below left=2cm and -4em of BET] (native) {Native Image};
+%\node [bblock, below right=1.5cm and -4em of native] (predictors) {ICH Predictors};
+
+\node [bblock, below of=BET]  (rigid_make) {Rigid\\
+Registration};
+\node [bblock, below of=rigid_make]  (ero) {Mask Erosion};
+\node [block, below of=ero] (rigid) {ICH Predictors};
+\node [bblock, below of=rigid] (predictors) {Voxel Selection};
+
+
+
+\node [bblock, below=1.5cm of predictors] (Models) {Prediction Models};
+
+\node [bblock, below of=Models] (smooth) {Smoothed Probability Image};
+
+\node [bblock, below=1.5cm of smooth] (probthresh) {Binary\\ Prediction Image};
+
+\node [bblock, below=1.5cm of probthresh] (native_probthresh) {Binary\\ Prediction Image (Native Space)};
+
+
+
+%\node [bblock, below of=BET]  (rigid_make) {Rigid\\
+%Registration};
+
+\node [bblock, below left=0.8cm and -.5cm of native_probthresh] (Dice) {Dice \\ Similarity \\ Index};
+%\node [bblock, below left=0.8cm and -.5cm of probthresh] (Dice) {
+%  \begin{tabular}{c}
+%     Dice \\
+%     Similarity \\
+%     Index
+%  \end{tabular}};
+
+
+\node [bblock, below right=0.8cm and -.5cm of native_probthresh] (Volume) {ICH Volume Estimate};
+
+
+% Draw edges
+\path [line] (raw) -- node {dcm2nii} (dcmnii);
+\path [line] (raw) -- (gantry);
+\path [line] (gantry) -- node {dcm2nii} (dcmnii);
+%\path [line] (dcmnii) -- (thresh);
+%\path [line] (thresh) -- (BET);
+\path [line] (dcmnii) -- (BET);
+%\path [line] (BET) -- (rigid);
+\path [line] (BET) -- (rigid_make);
+\path [line] (rigid_make) -- (ero);
+
+\path [line] (ero) -- (rigid);
+%\path [line] (BET) -- (native);
+%\path [line] (BET) -- node {Different Processing Pipelines} (native);
+
+%\path [line] (BET) -- node {Registration} (rigid);
+
+%\path [line] (native) -- (predictors);
+\path [line] (rigid) -- (predictors);
+
+\path [line] (predictors) -- node {Sample Voxels} (Models);
+
+\path [line] (Models) -- (smooth);
+\path [line] (smooth) -- node {Threshold, Keep Connected Components} (probthresh);
+
+\path [line] (probthresh) -- node {Apply Rigid Transformation Inverse} (native_probthresh);
+
+\path [line] (native_probthresh) -- (Dice);
+\path [line] (native_probthresh) -- (Volume);
+
+\end{tikzpicture}
+
+\end{document}

@@ -3,35 +3,20 @@ library(dplyr)
 library(readr)
 
 set.seed(20180129)
-data = read_dta("Subject_Demographics_and_Clinical_History.dta")
-data = as_factor(data)
+# data = read_dta("Subject_Demographics_and_Clinical_History.dta")
+# data = as_factor(data)
+data = read_csv("Subject_Demographics_and_Clinical_History.csv")
 cn = c("patientName", "Index_Clot_Location_Site",
        "Index_Clot_Location_RC", "Stability_Total_Blood_Volume_RC", 
        "Stability_ICH_Volume_RC", "Stability_IVH_Volume_RC", 
        "other_ich_location_RC", 
-       "other_ich_location_Site")
+       "other_ich_location_Site", "Age_at_Consent", 
+       "Gender", "Hispanic", "Race")
 data = data[, cn]
 
 data$pid = data$patientName %% 1000
 data$first_250 = data$pid <= 250
 xdata = data
-
-init_file = "initial_sample.csv"
-outfile = "batches.csv"
-if (file.exists(init_file)) {
-  init = read_csv(init_file)
-  data = data %>% 
-    filter(!patientName %in% init$patientName)  
-  init = init %>%
-    select(patientName)
-  init$batch = 1
-}
-n_batches = ceiling(nrow(data)/ 50)
-# data = xdata %>% filter(first_250)
-
-med = median(data$Stability_Total_Blood_Volume_RC)
-
-data$large = data$Stability_Total_Blood_Volume_RC >= med
 
 data$other_ich_location_RC = tolower(data$other_ich_location_RC)
 data$other_ich_location_Site = tolower(data$other_ich_location_Site)
@@ -79,6 +64,41 @@ data = data %>%
       "Deep", Index_Clot_Location_RC
     )
   )
+
+df = data
+
+df = df %>% 
+  rename(ich_location = Index_Clot_Location_RC,
+         ich_volume = Stability_ICH_Volume_RC,
+         ivh_volume = Stability_IVH_Volume_RC,
+         all_volume = Stability_Total_Blood_Volume_RC,
+         age = Age_at_Consent,
+         sex = Gender,
+         race = Race,
+         hispanic = Hispanic) %>% 
+  select(patientName, ich_location, ich_volume, ivh_volume, all_volume,
+         age, sex, race, hispanic)
+write_csv(df, path = "clear_demographics.csv")
+
+
+med = median(data$Stability_Total_Blood_Volume_RC, na.rm = TRUE)
+
+data$large = data$Stability_Total_Blood_Volume_RC >= med
+
+
+init_file = "initial_sample.csv"
+outfile = "batches.csv"
+if (file.exists(init_file)) {
+  init = read_csv(init_file)
+  data = data %>% 
+    filter(!patientName %in% init$patientName)  
+  init = init %>%
+    select(patientName)
+  init$batch = 1
+}
+n_batches = ceiling(nrow(data) / 50)
+# data = xdata %>% filter(first_250)
+
 
 
 # samp = data %>%

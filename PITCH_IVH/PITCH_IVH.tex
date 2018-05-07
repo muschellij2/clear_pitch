@@ -1,0 +1,531 @@
+\documentclass[]{elsarticle} %review=doublespace preprint=single 5p=2 column
+%%% Begin My package additions %%%%%%%%%%%%%%%%%%%
+\usepackage[hyphens]{url}
+\usepackage{lineno} % add
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\bibliographystyle{elsarticle-harv}
+\biboptions{sort&compress} % For natbib
+\usepackage{graphicx}
+\usepackage{booktabs} % book-quality tables
+%% Redefines the elsarticle footer
+%\makeatletter
+%\def\ps@pprintTitle{%
+% \let\@oddhead\@empty
+% \let\@evenhead\@empty
+% \def\@oddfoot{\it \hfill\today}%
+% \let\@evenfoot\@oddfoot}
+%\makeatother
+
+% A modified page layout
+\textwidth 6.75in
+\oddsidemargin -0.15in
+\evensidemargin -0.15in
+\textheight 9in
+\topmargin -0.5in
+%%%%%%%%%%%%%%%% end my additions to header
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \usepackage{fontspec}
+  \ifxetex
+    \usepackage{xltxtra,xunicode}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use microtype if available
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={},
+            pdftitle={Short Paper},
+            colorlinks=true,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{0}
+% Pandoc toggle for numbering sections (defaults to be off)
+\setcounter{secnumdepth}{0}
+% Pandoc header
+
+
+\usepackage[nomarkers]{endfloat}
+
+\begin{document}
+\begin{frontmatter}
+
+  \title{Short Paper}
+    \author[Some Institute of Technology]{Alice Anonymous\corref{c1}}
+   \ead{alice@example.com} 
+   \cortext[c1]{Corresponding Author}
+    \author[Another University]{Bob Security}
+   \ead{bob@example.com} 
+  
+      \address[Some Institute of Technology]{Department, Street, City, State, Zip}
+    \address[Another University]{Department, Street, City, State, Zip}
+  
+  \begin{abstract}
+  This is the abstract.
+  
+  It consists of two paragraphs.
+  \end{abstract}
+  
+ \end{frontmatter}
+
+\emph{Text based on elsarticle sample manuscript, see
+\url{http://www.elsevier.com/author-schemas/latex-instructions\#elsarticle}}
+
+\hypertarget{the-elsevier-article-class}{%
+\section{The Elsevier article class}\label{the-elsevier-article-class}}
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Intracerebral hemorrhage (ICH) is a neurological condition that results
+from a blood vessel rupturing into the tissue and possibly extending
+into the ventricles of the brain. The use of X-ray computed tomography
+(CT) scans allows clinicians and researchers to qualitatively and
+quantitatively describe the characteristics of a hemorrhage to guide
+interventions and treatments. CT scanning is widely available and is the
+most commonly used diagnostic tool in patients with ICH (Sahni and
+Weinberger 2007). The volume of ICH has been consistently demonstrated
+to be an important diagnostic predictor of stroke severity, long-term
+functional outcome, and mortality (Broderick et al. 1993; Hemphill et
+al. 2001; Tuhrim et al. 1999). ICH volume change is also a common
+primary outcome (Anderson et al. 2008, 2010; Qureshi et al. 2011; Mayer
+et al. 2005) and secondary outcome (T. Morgan et al. 2008; Anderson et
+al. 2008; T Morgan et al. 2008) in clinical trials. Moreover, the
+location of the ICH has been shown to affect functional outcome in
+patients with stroke (Rost et al. 2008; Castellanos et al. 2005). Thus,
+quantitative measures of ICH (e.g.\textasciitilde{}volume, location, and
+shape) are increasingly important for treatment and other clinical
+decision.
+
+ICH volume can be estimated quickly, for example, using the ABC/2 method
+(Broderick et al. 1993). In this method, a reader chooses the slice with
+the largest area of hemorrhage. The length of the intersection between
+this first axis and the hemorrhage is denoted by A. The next step is to
+draw an orthogonal line at the middle of the segment of length A in the
+same plane that contains the largest hemorrhage area. The length of the
+intersection between this second orthogonal axis and the hemorrhage is
+denoted by B. The reader then counts the number of slices where
+hemorrhage is present (C). The volume estimate is
+\(\frac{A\times B\times C}{2}\), which is an approximation of the volume
+under the assumption that the hemorrhage shape is well approximated by
+an ellipsoid (Kothari et al. 1996). As this method is relatively easy to
+implement in practice, it can be used to quickly produce rough estimates
+of hemorrhage volume (Webb et al. 2015).
+
+Although ABC/2 is widely used; Divani et al. (2011) found that the
+measurement error associated with the ABC/2 method were significantly
+greater than those using planimetry, which requires slice-by-slice
+hemorrhage segmentation by trained readers. Planimetry is much more
+labor intensive and time consuming, but it more accurately estimates the
+true ICH volume compared to the ABC/2 approach, especially for
+irregularly shaped ICH and for smaller thickness
+(i.e.\textasciitilde{}higher resolution) scans.
+
+Another problem that has not been discussed in the literature is that
+ICH may change over time. The shape of the ICH may initially be well
+approximated by an ellipsoid but the approximation may become
+increasingly inaccurate over time as the lesion changes shape, migrates
+through the surrounding tissues, or breaks down. Surgical interventions
+that target the removal of ICH may also change the shape of the ICH or
+cause additional bleeding.
+
+Moreover, the ABC/2 method has been shown to consistently over-estimate
+infarct volume (Pedraza et al. 2012) and may have significant
+inter-rater variability {[}Hussein et al. (2013)\}. Therefore, a rapid,
+automated, and validated method for estimating hemorrhage location and
+its volume from CT scans is highly relevant in clinical trials and
+clinical care. Accuracy is accompanied by increase of both diagnostic
+and prognostic value.
+
+Methods have been proposed for segmentation of ICH using magnetic
+resonance images (MRI) (Wang et al. 2013; Carhuapoma et al. 2003).
+However, in most clinical settings CT, not MRI, is the image of choice.
+Furthermore, MRI sequences and protocols may vary across sites and there
+is no general, standardized, agreed-upon MRI protocol for ICH
+standard-of-care. Thus, there is a need for ICH segmentation that relies
+only on CT scan information, is reliable, reproducible, available, and
+well validated against planimetry.
+
+We propose an algorithm that can estimate the probability of ICH at the
+voxel level, produce a binary image of ICH location, and estimate ICH
+volume. We will compare our predicted ICH maps to the gold standard --
+manual segmentation. Several methods have been presented for automated
+methods for estimating ICH from CT scans (Prakash et al. 2012; Loncaric,
+Cosic, and Dhawan 1996; Loncaric et al. 1999; Pérez et al. 2007;
+Gillebert, Humphreys, and Mantini 2014). These methods include fuzzy
+clustering (Prakash et al. 2012; Loncaric, Cosic, and Dhawan 1996),
+simulated annealing (Loncaric et al. 1999), 3-dimensional (3D)
+mathematical morphology operations (Pérez et al. 2007), and
+template-based comparisons (Gillebert, Humphreys, and Mantini 2014).
+Unfortunately, no software for ICH segmentation is publicly available.
+
+We provide a completely automated pipeline of analysis from raw images
+to binary hemorrhage masks and volume estimates, and provide a public
+webpage to test the software.
+
+\hypertarget{introduction-1}{%
+\section{Introduction}\label{introduction-1}}
+
+\hypertarget{data}{%
+\subsection{Data}\label{data}}
+
+\hypertarget{participants-and-imaging-data}{%
+\subsection{Participants and Imaging
+Data}\label{participants-and-imaging-data}}
+
+We used CT images from patients enrolled in the MISTIE II (Minimally
+Invasive Surgery plus recombinant-tissue plasminogen activator for
+Intracerebral Hemorrhage Evacuation) stroke trial (T. Morgan et al.
+2008). We analyzed \(641\) scans taken prior to randomization and
+treatment, corresponding to the first scan acquired post-stroke for
+\(641\) unique patients. Inclusion criteria into the study included:
+\(18\) to \(80\) years of age and spontaneous supratentorial
+intracerebral hemorrhage above \(20\) milliliters (mL) in size (for full
+criteria, see Mould et al. (2013)). The population analyzed here had a
+mean (standard deviation (SD)) age of \(59.1123245\) \((11.3240557)\)
+years, was \(58\%\) male, and was 59.8, 33.1, 3.7, 2.2, 0.9, 0.2, 0.2.
+CT data were collected as part of the Johns Hopkins Medicine
+IRB-approved MISTIE research studies with written consent from
+participants.
+
+The study protocol was executed with minor, but important, differences
+across the \(1\) sites.\\
+ In head CT scanning, the gantry may be tilted for multiple purposes,
+for example, so that sensitive organs, such as the eyes, are not exposed
+to X-ray radiation. This causes scan slices to be acquired at an oblique
+angle with respect to the patient. Gantry tilt was observed in \(0\)
+scans.
+
+Slice thickness of the image varied within the scan for 0 scans.
+
+For example, a scan may have \(10\) millimeter (mm) slices at the top
+and bottom of the brain and \(5\)mm slices in the middle of the brain.
+Therefore, the original scans analyzed had different voxel (volume
+element) dimensions. These conditions are characteristic of how scan are
+presented in many diagnostic cases.
+
+\hypertarget{hemorrhage-segmentation-and-location-identification}{%
+\subsection{Hemorrhage Segmentation and Location
+Identification}\label{hemorrhage-segmentation-and-location-identification}}
+
+ICH was manually segmented on CT scans using the OsiriX imaging software
+by expert readers (OsiriX v. 4.1, Pixmeo; Geneva, Switzerland). After
+image quality review, continuous, non-overlapping slices of the entire
+hemorrhage were segmented. Readers employed a semiautomated
+threshold-based approach using a Hounsfield unit (HU) range of \(40\) to
+\(80\) to select potential regions of hemorrhage (Bergström et al. 1977,
+smith\_imaging\_2006); these regions were then further quality
+controlled and refined by readers using direct inspection of images.
+Binary hemorrhage masks were created by setting voxel intensity to \(1\)
+if the voxel was classified as hemorrhage, regardless of location, and
+\(0\) otherwise.
+
+\hypertarget{image-processing-brain-extraction-registration}{%
+\subsection{Image Processing: Brain Extraction,
+Registration}\label{image-processing-brain-extraction-registration}}
+
+CT images and binary hemorrhage masks were exported from OsiriX to DICOM
+(Digital Imaging and Communications in Medicine) format. The image
+processing pipeline can be seen in
+Figure\textasciitilde{}\ref{fig:framework}. Images with gantry tilt were
+corrected using a customized MATLAB (The Mathworks, Natick,
+Massachusetts, USA) user-written script
+(\{\scriptsize \url{http://bit.ly/1ltIM8c}\}). Images were converted to
+the Neuroimaging Informatics Technology Initiative (NIfTI) data format
+using \texttt{dcm2nii} (provided with MRIcro (Rorden and Brett 2000)).
+Images were constrained to values \(-1024\) and \(3071\) HU to remove
+potential image rescaling errors and artifacts. No interpolation was
+done for images with a variable slice thickness. Thickness was
+determined from the first converted slice and the NIfTI format assumes
+homogeneous thickness throughout the image. In a future release of
+\texttt{dcm2nii}, called \texttt{dcm2niix}, interpolation will be done
+for scans with variable slice thickness and gantry-tilt correction will
+be performed automatically.
+
+All image analysis was done in the R statistical software (R Core Team
+2015), using the \emph{fslr} (Muschelli, Sweeney, et al. 2015) package
+to call functions from the FSL (Jenkinson et al. 2012) neuroimaging
+software (version 5.0.4), and the \emph{ANTsR} package to call functions
+from the ANTs (Advanced Normalization Tools) neuroimaging software
+(Avants et al. 2011).
+
+Brains were extracted to remove skull, eyes, facial and nasal features,
+extracranial skin, and non-human elements of the image captured by the
+CT scanner, such as the gantry, pillows, or medical devices. Removal of
+these elements was performed using the brain extraction tool (BET)
+(Smith 2002), a function of FSL, using a previously published validated
+CT-specific brain extraction protocol (Muschelli, Ullman, et al. 2015).
+
+\hypertarget{front-matter}{%
+\section{Front matter}\label{front-matter}}
+
+The author names and affiliations could be formatted in two ways:
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\item
+  Group the authors per affiliation.
+\item
+  Use footnotes to indicate the affiliations.
+\end{enumerate}
+
+See the front matter of this document for examples. You are recommended
+to conform your choice to the journal you are submitting to.
+
+\hypertarget{bibliography-styles}{%
+\section{Bibliography styles}\label{bibliography-styles}}
+
+There are various bibliography styles available. You can select the
+style of your choice in the preamble of this document. These styles are
+Elsevier styles based on standard styles like Harvard and Vancouver.
+Please use BibTeX~to generate your bibliography and include DOIs
+whenever available.
+
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\leavevmode\hypertarget{ref-anderson_effects_2010}{}%
+Anderson, Craig S., Yining Huang, Hisatomi Arima, Emma Heeley, Christian
+Skulina, Mark W. Parsons, Bin Peng, et al. 2010. ``Effects of Early
+Intensive Blood Pressure-Lowering Treatment on the Growth of Hematoma
+and Perihematomal Edema in Acute Intracerebral Hemorrhage the Intensive
+Blood Pressure Reduction in Acute Cerebral Haemorrhage Trial
+(INTERACT).'' \emph{Stroke} 41 (2):307--12.
+\url{https://doi.org/10.1161/STROKEAHA.109.561795}.
+
+\leavevmode\hypertarget{ref-anderson_intensive_2008}{}%
+Anderson, Craig S., Yining Huang, Ji Guang Wang, Hisatomi Arima, Bruce
+Neal, Bin Peng, Emma Heeley, et al. 2008. ``Intensive Blood Pressure
+Reduction in Acute Cerebral Haemorrhage Trial (INTERACT): A Randomised
+Pilot Trial.'' \emph{The Lancet Neurology} 7 (5):391--99.
+\url{http://www.sciencedirect.com/science/article/pii/S1474442208700693}.
+
+\leavevmode\hypertarget{ref-avants_reproducible_2011}{}%
+Avants, Brian B., Nicholas J. Tustison, Gang Song, Philip A. Cook, Arno
+Klein, and James C. Gee. 2011. ``A Reproducible Evaluation of ANTs
+Similarity Metric Performance in Brain Image Registration.''
+\emph{NeuroImage} 54 (3):2033--44.
+\url{https://doi.org/10.1016/j.neuroimage.2010.09.025}.
+
+\leavevmode\hypertarget{ref-bergstrom_variation_1977}{}%
+Bergström, M, K Ericson, B Levander, P Svendsen, and S Larsson. 1977.
+``Variation with Time of the Attenuation Values of Intracranial
+Hematomas.'' \emph{Journal of Computer Assisted Tomography} 1
+(1):57--63.
+
+\leavevmode\hypertarget{ref-broderick_volume_1993}{}%
+Broderick, J. P., T. G. Brott, J. E. Duldner, T. Tomsick, and G. Huster.
+1993. ``Volume of Intracerebral Hemorrhage. A Powerful and Easy-to-Use
+Predictor of 30-Day Mortality.'' \emph{Stroke} 24 (7):987--93.
+\url{https://doi.org/10.1161/01.STR.24.7.987}.
+
+\leavevmode\hypertarget{ref-carhuapoma2003brain}{}%
+Carhuapoma, Ricardo J, Daniel F Hanley, Mousumi Banerjee, and Norman J
+Beauchamp. 2003. ``Brain Edema After Human Cerebral Hemorrhage a
+Magnetic Resonance Imaging Volumetric Analysis.'' \emph{Journal of
+Neurosurgical Anesthesiology} 15 (3). LWW:230--33.
+
+\leavevmode\hypertarget{ref-castellanos_predictors_2005}{}%
+Castellanos, M., R. Leira, J. Tejada, A. Gil-Peralta, A. Dàvalos, and J.
+Castillo. 2005. ``Predictors of Good Outcome in Medium to Large
+Spontaneous Supratentorial Intracerebral Haemorrhages.'' \emph{Journal
+of Neurology, Neurosurgery \& Psychiatry} 76 (5):691--95.
+\url{https://doi.org/10.1136/jnnp.2004.044347}.
+
+\leavevmode\hypertarget{ref-divani_abcs_2011}{}%
+Divani, Afshin A., Shahram Majidi, Xianghua Luo, Fotis G. Souslian, Jie
+Zhang, Aviva Abosch, and Ramachandra P. Tummala. 2011. ``The ABCs of
+Accurate Volumetric Measurement of Cerebral Hematoma.'' \emph{Stroke} 42
+(6):1569--74.
+\url{https://stroke.ahajournals.org/content/42/6/1569.full}.
+
+\leavevmode\hypertarget{ref-gillebert_automated_2014}{}%
+Gillebert, Céline R., Glyn W. Humphreys, and Dante Mantini. 2014.
+``Automated Delineation of Stroke Lesions Using Brain CT Images.''
+\emph{NeuroImage: Clinical} 4:540--48.
+\url{https://doi.org/10.1016/j.nicl.2014.03.009}.
+
+\leavevmode\hypertarget{ref-hemphill_ich_2001}{}%
+Hemphill, J. Claude, David C. Bonovich, Lavrentios Besmertis, Geoffrey
+T. Manley, and S. Claiborne Johnston. 2001. ``The ICH Score a Simple,
+Reliable Grading Scale for Intracerebral Hemorrhage.'' \emph{Stroke} 32
+(4):891--97. \url{https://doi.org/10.1161/01.STR.32.4.891}.
+
+\leavevmode\hypertarget{ref-hussein_reliability_2013}{}%
+Hussein, Haitham M., Nauman A. Tariq, Yuko Y. Palesch, and Adnan I.
+Qureshi. 2013. ``Reliability of Hematoma Volume Measurement at Local
+Sites in a Multicenter Acute Intracerebral Hemorrhage Clinical Trial.''
+\emph{Stroke} 44 (1):237--39.
+\url{https://doi.org/10.1161/STROKEAHA.112.667220}.
+
+\leavevmode\hypertarget{ref-jenkinson_fsl_2012}{}%
+Jenkinson, Mark, Christian F. Beckmann, Timothy E. J. Behrens, Mark W.
+Woolrich, and Stephen M. Smith. 2012. ``FSL.'' \emph{NeuroImage} 62
+(2):782--90. \url{https://doi.org/10.1016/j.neuroimage.2011.09.015}.
+
+\leavevmode\hypertarget{ref-kothari_abcs_1996}{}%
+Kothari, Rashmi U., Thomas Brott, Joseph P. Broderick, William G.
+Barsan, Laura R. Sauerbeck, Mario Zuccarello, and Jane Khoury. 1996.
+``The ABCs of Measuring Intracerebral Hemorrhage Volumes.''
+\emph{Stroke} 27 (8):1304--5.
+\url{https://doi.org/10.1161/01.STR.27.8.1304}.
+
+\leavevmode\hypertarget{ref-loncaric_hierarchical_1996}{}%
+Loncaric, Sven, Dubravko Cosic, and Atam P. Dhawan. 1996. ``Hierarchical
+Segmentation of CT Head Images.'' \emph{Proc IEEE EMBS. Doi} 10:1109.
+\url{http://www.researchgate.net/publication/2690468_Hierarchical_Segmentation_of_CT_Head_Images/file/d912f50edddd1ca672.pdf}.
+
+\leavevmode\hypertarget{ref-loncaric_quantitative_1999}{}%
+Loncaric, Sven, Atam P. Dhawan, Dubravko Cosic, Domagoj Kovacević,
+Joseph Broderick, and Thomas Brott. 1999. ``Quantitative Intracerebral
+Brain Hemorrhage Analysis.'' In \emph{Medical Imaging'99}, 886--94.
+International Society for Optics; Photonics.
+\url{http://proceedings.spiedigitallibrary.org/proceeding.aspx?articleid=980754}.
+
+\leavevmode\hypertarget{ref-mayer_recombinant_2005}{}%
+Mayer, Stephan A., Nikolai C. Brun, Kamilla Begtrup, Joseph Broderick,
+Stephen Davis, Michael N. Diringer, Brett E. Skolnick, and Thorsten
+Steiner. 2005. ``Recombinant Activated Factor VII for Acute
+Intracerebral Hemorrhage.'' \emph{New England Journal of Medicine} 352
+(8):777--85. \url{https://doi.org/10.1056/NEJMoa042991}.
+
+\leavevmode\hypertarget{ref-morgan_preliminary_2008_clear}{}%
+Morgan, T, I Awad, P Keyl, K Lane, and D Hanley. 2008. ``Preliminary
+Report of the Clot Lysis Evaluating Accelerated Resolution of
+Intraventricular Hemorrhage (Clear-Ivh) Clinical Trial.'' In
+\emph{Cerebral Hemorrhage}, 217--20. Springer.
+
+\leavevmode\hypertarget{ref-morgan_preliminary_2008_mistie}{}%
+Morgan, T., M. Zuccarello, R. Narayan, P. Keyl, K. Lane, and D. Hanley.
+2008. ``Preliminary Findings of the Minimally-Invasive Surgery Plus rtPA
+for Intracerebral Hemorrhage Evacuation (MISTIE) Clinical Trial.'' In
+\emph{Cerebral Hemorrhage}, 147--51. Springer.
+\url{http://link.springer.com/chapter/10.1007/978-3-211-09469-3_30}.
+
+\leavevmode\hypertarget{ref-mould_minimally_2013}{}%
+Mould, W. Andrew, J. Ricardo Carhuapoma, John Muschelli, Karen Lane,
+Timothy C. Morgan, Nichol A. McBee, Amanda J. Bistran-Hall, et al. 2013.
+``Minimally Invasive Surgery Plus Recombinant Tissue-Type Plasminogen
+Activator for Intracerebral Hemorrhage Evacuation Decreases
+Perihematomal Edema.'' \emph{Stroke} 44 (3):627--34.
+\url{https://doi.org/10.1161/STROKEAHA.111.000411}.
+
+\leavevmode\hypertarget{ref-muschelli2015fslr}{}%
+Muschelli, John, Elizabeth Sweeney, Martin Lindquist, and Ciprian
+Crainiceanu. 2015. ``fslr: Connecting the FSL Software with R.'' \emph{R
+Journal} 7 (1). R Foundation for Statistical Computing:163--75.
+
+\leavevmode\hypertarget{ref-muschelli_validated_2015}{}%
+Muschelli, John, Natalie L. Ullman, W. Andrew Mould, Paul Vespa, Daniel
+F. Hanley, and Ciprian M. Crainiceanu. 2015. ``Validated Automatic Brain
+Extraction of Head CT Images.'' \emph{NeuroImage}.
+\url{https://doi.org/10.1016/j.neuroimage.2015.03.074}.
+
+\leavevmode\hypertarget{ref-pedraza_reliability_2012}{}%
+Pedraza, Salvador, Josep Puig, Gerard Blasco, Josep Daunis-i-Estadella,
+Imma Boada, Anton Bardera, Mar Castellanos, and Joaquín Serena. 2012.
+``Reliability of the ABC/2 Method in Determining Acute Infarct Volume.''
+\emph{Journal of Neuroimaging} 22 (2):155--59.
+\url{https://doi.org/10.1111/j.1552-6569.2011.00588.x}.
+
+\leavevmode\hypertarget{ref-perez_set_2007}{}%
+Pérez, Noel, José A. Valdés, Miguel A. Guevara, Luis A. Rodríguez, and
+J. M. Molina. 2007. ``Set of Methods for Spontaneous ICH Segmentation
+and Tracking from CT Head Images.'' In \emph{Progress in Pattern
+Recognition, Image Analysis and Applications}, 212--20. Springer.
+\url{http://link.springer.com/chapter/10.1007/978-3-540-76725-1_23}.
+
+\leavevmode\hypertarget{ref-prakash_segmentation_2012}{}%
+Prakash, K. N. Bhanu, Shi Zhou, Tim C. Morgan, Daniel F. Hanley, and
+Wieslaw L. Nowinski. 2012. ``Segmentation and Quantification of
+Intra-Ventricular/Cerebral Hemorrhage in CT Scans by Modified Distance
+Regularized Level Set Evolution Technique.'' \emph{International Journal
+of Computer Assisted Radiology and Surgery} 7 (5):785--98.
+\url{https://doi.org/10.1007/s11548-012-0670-0}.
+
+\leavevmode\hypertarget{ref-qureshi_association_2011}{}%
+Qureshi, Adnan I., Yuko Y. Palesch, Renee Martin, Jill Novitzke,
+Salvador Cruz-Flores, Asad Ehtisham, Mustapha A. Ezzeddine, et al. 2011.
+``Association of Serum Glucose Concentrations During Acute
+Hospitalization with Hematoma Expansion, Perihematomal Edema, and Three
+Month Outcome Among Patients with Intracerebral Hemorrhage.''
+\emph{Neurocritical Care} 15 (3):428--35.
+\url{https://doi.org/10.1007/s12028-011-9541-8}.
+
+\leavevmode\hypertarget{ref-RCORE}{}%
+R Core Team. 2015. \emph{R: A Language and Environment for Statistical
+Computing}. Vienna, Austria: R Foundation for Statistical Computing.
+\url{https://www.R-project.org/}.
+
+\leavevmode\hypertarget{ref-rorden_stereotaxic_2000}{}%
+Rorden, Chris, and Matthew Brett. 2000. ``Stereotaxic Display of Brain
+Lesions.'' \emph{Behavioural Neurology} 12 (4):191--200.
+\url{https://doi.org/10.1155/2000/421719}.
+
+\leavevmode\hypertarget{ref-rost_prediction_2008}{}%
+Rost, Natalia S., Eric E. Smith, Yuchiao Chang, Ryan W. Snider, Rishi
+Chanderraj, Kristin Schwab, Emily FitzMaurice, et al. 2008. ``Prediction
+of Functional Outcome in Patients with Primary Intracerebral Hemorrhage
+the FUNC Score.'' \emph{Stroke} 39 (8):2304--9.
+\url{https://doi.org/10.1161/STROKEAHA.107.512202}.
+
+\leavevmode\hypertarget{ref-sahni_management_2007}{}%
+Sahni, Ramandeep, and Jesse Weinberger. 2007. ``Management of
+Intracerebral Hemorrhage.'' \emph{Vascular Health and Risk Management} 3
+(5):701--9. \url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2291314/}.
+
+\leavevmode\hypertarget{ref-smith_fast_2002}{}%
+Smith, Stephen M. 2002. ``Fast Robust Automated Brain Extraction.''
+\emph{Human Brain Mapping} 17 (3):143--55.
+\url{https://doi.org/10.1002/hbm.10062}.
+
+\leavevmode\hypertarget{ref-tuhrim_volume_1999}{}%
+Tuhrim, Stanley, Deborah R. Horowitz, Michael Sacher, and James H.
+Godbold. 1999. ``Volume of Ventricular Blood Is an Important Determinant
+of Outcome in Supratentorial Intracerebral Hemorrhage.'' \emph{Critical
+Care Medicine} 27 (3):617--21.
+\url{http://journals.lww.com/ccmjournal/Abstract/1999/03000/Volume_of_ventricular_blood_is_an_important.45.aspx}.
+
+\leavevmode\hypertarget{ref-wang_hematoma_2013}{}%
+Wang, Shuo, Min Lou, Tian Liu, Deqi Cui, Xiaomei Chen, and Yi Wang.
+2013. ``Hematoma Volume Measurement in Gradient Echo MRI Using
+Quantitative Susceptibility Mapping.'' \emph{Stroke} 44 (8):2315--7.
+\url{https://doi.org/10.1161/STROKEAHA.113.001638}.
+
+\leavevmode\hypertarget{ref-webb_accuracy_2015}{}%
+Webb, Alastair J. S., Natalie L. Ullman, Tim C. Morgan, John Muschelli,
+Joshua Kornbluth, Issam A. Awad, Stephen Mayo, et al. 2015. ``Accuracy
+of the ABC/2 Score for Intracerebral Hemorrhage Systematic Review and
+Analysis of MISTIE, CLEAR-IVH, and CLEAR III.'' \emph{Stroke} 46
+(9):2470--6. \url{https://doi.org/10.1161/STROKEAHA.114.007343}.
+
+\end{document}
+
+

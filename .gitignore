@@ -5,3 +5,6 @@
 Subject_Demographics_and_Clinical_History.dta
 results/*.png
 *.nii.gz
+PITCH_IVH/*.csv
+PITCH_IVH/*.rds
+PITCH_IVH/*.Rda

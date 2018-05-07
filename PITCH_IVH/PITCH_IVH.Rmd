@@ -1,0 +1,153 @@
+---
+title: Short Paper
+author:
+  - name: Alice Anonymous
+    email: alice@example.com
+    affiliation: Some Institute of Technology
+    footnote: Corresponding Author
+  - name: Bob Security
+    email: bob@example.com
+    affiliation: Another University
+address:
+  - code: Some Institute of Technology
+    address: Department, Street, City, State, Zip
+  - code: Another University
+    address: Department, Street, City, State, Zip
+abstract: |
+  This is the abstract.
+
+  It consists of two paragraphs.
+
+bibliography: ich_chapter.bib
+output: rticles::elsevier_article
+---
+
+_Text based on elsarticle sample manuscript, see [http://www.elsevier.com/author-schemas/latex-instructions#elsarticle](http://www.elsevier.com/author-schemas/latex-instructions#elsarticle)_
+
+
+```{r, include=FALSE}
+library(tidyverse)
+library(knitr)
+
+pname_to_pid = function(patientName, study) {
+  patientName = as.integer(patientName)
+  divisor = ifelse(study == "CLEAR", 10000, 1000)
+  p_id = paste0(patientName %% divisor, "-",
+    floor(patientName / divisor))
+  p_id[ study == "MISTIE" ] = paste0("0",
+    p_id[ study == "MISTIE" ])
+  p_id
+}
+
+knitr::opts_chunk$set(echo = FALSE, comment = "", 
+                      warning = FALSE, message = FALSE)
+df = read_csv("clear_demographics.csv")
+df$study = "CLEAR"
+m = read_csv("mistie_demographics.csv")
+m$study = "MISTIE"
+df = full_join(df, m)
+df$pid = pname_to_pid(df$patientName, df$study)
+df = separate(df, col = pid, into = c("id", "site"), remove = FALSE)
+
+
+race_remap = c("African American not Hispanic" = "Black/African American", 
+               "American Indian or Alaskan Native" = "American Indian or Alaskan Native", 
+               "Asian" = "Asian or Pacific Islander", 
+               "Asian or Pacific Islander" = "Asian or Pacific Islander", 
+               "Native Hawaiian or other Pacific Islander" = "Asian or Pacific Islander",                
+               "Black/African American" = "Black/African American", 
+               "Hispanic" =         "Hispanic", 
+               "Multi-Racial" = "Multi-Racial", 
+               "Not Specified" = "Unknown", 
+               "Other or unknown" = "Unknown", 
+               "Caucasian not Hispanic" = "White/Caucasian", 
+               "White/Caucasian" = "White/Caucasian")
+race_remap = data_frame(race = names(race_remap), race2 = race_remap)
+df = left_join(df, race_remap)
+df = df %>% rename(orig_race = race, race = race2)
+
+mean.age = mean(df$age)
+sd.age = sd(df$age)
+n.gant = 0
+n.slices = 0
+mean.male = round(prop.table(table(df$sex))['Male'] * 100, 1)
+race = sort(round(prop.table(table(df$race)) * 100, 1), decreasing = TRUE)
+man = man.tab = NA
+```
+
+The Elsevier article class
+==========================
+
+# Introduction
+
+
+Intracerebral hemorrhage (ICH) is a neurological condition that results from a blood vessel rupturing into the tissue and possibly extending into the ventricles of the brain.   The use of X-ray computed tomography (CT) scans allows clinicians and researchers to qualitatively and quantitatively describe the characteristics of a hemorrhage to guide interventions and treatments.  CT scanning is widely available and is the most commonly used diagnostic tool in patients with ICH [@sahni_management_2007].  The volume of ICH has been consistently demonstrated to be an important diagnostic predictor of stroke severity, long-term functional outcome, and mortality [@broderick_volume_1993; @hemphill_ich_2001; @tuhrim_volume_1999].  ICH volume change is also a common primary outcome [@anderson_intensive_2008; @anderson_effects_2010; @qureshi_association_2011; @mayer_recombinant_2005] and secondary outcome [@morgan_preliminary_2008_mistie; @anderson_intensive_2008; @morgan_preliminary_2008_clear] in clinical trials.  Moreover, the location of the ICH has been shown to affect functional outcome in patients with stroke [@rost_prediction_2008; @castellanos_predictors_2005].  Thus, quantitative measures of ICH (e.g.~volume, location, and shape) are increasingly important for treatment and other clinical decision.
+
+ICH volume can be estimated quickly, for example,  using the ABC/2 method [@broderick_volume_1993].  In this method, a reader chooses the slice with the largest area of hemorrhage.  The length of the intersection between this first axis and the hemorrhage is denoted by A. The next step is to draw an orthogonal line  at the middle of the segment of length A in the same plane that contains the largest hemorrhage area. The length of the intersection between this second orthogonal axis and the hemorrhage is denoted by B.  The reader then counts the number of slices where hemorrhage is present (C).  The volume estimate is $\frac{A\times B\times C}{2}$, which is an approximation of the volume under the assumption that the hemorrhage shape is well approximated by an ellipsoid [@kothari_abcs_1996].  As this method is relatively easy to implement in practice, it can be used to quickly produce rough estimates of hemorrhage volume [@webb_accuracy_2015].
+
+Although ABC/2 is widely used; @divani_abcs_2011 found that the measurement error associated with the ABC/2 method were significantly greater than those using planimetry, which requires slice-by-slice hemorrhage segmentation by trained readers. Planimetry is much more labor intensive and time consuming, but it more accurately estimates the true ICH volume compared to the ABC/2 approach, especially for irregularly shaped ICH and for smaller thickness (i.e.~higher resolution) scans.
+
+Another problem that has not been discussed in the literature is that ICH may change over time. The shape of the ICH may initially be well approximated by an ellipsoid but the approximation may become increasingly inaccurate over time as the lesion changes shape, migrates through the surrounding tissues, or breaks down.  Surgical interventions that target the removal of ICH may also change the shape of the ICH or cause additional bleeding.
+
+Moreover, the ABC/2 method has been shown to consistently over-estimate infarct volume [@pedraza_reliability_2012] and may have significant inter-rater variability [@hussein_reliability_2013}. Therefore, a rapid, automated, and validated method for estimating hemorrhage location and its volume from CT scans is highly relevant in clinical trials and clinical care.  Accuracy is accompanied by increase of both diagnostic and prognostic value.
+
+Methods have been proposed for segmentation of ICH using magnetic resonance images (MRI) [@wang_hematoma_2013; @carhuapoma2003brain].  However, in most clinical settings CT, not MRI, is the image of choice.  Furthermore, MRI sequences and protocols may vary across sites and there is no general, standardized, agreed-upon MRI protocol for ICH standard-of-care.
+Thus, there is a need for ICH segmentation that relies only on CT scan information, is reliable, reproducible, available, and well validated against planimetry.
+
+We propose an algorithm that can estimate the probability of ICH at the voxel level, produce a binary image of ICH location, and estimate ICH volume.  We will compare our predicted ICH maps to the gold standard -- manual segmentation.  Several methods have been presented for automated methods for estimating ICH from CT scans [@prakash_segmentation_2012; @loncaric_hierarchical_1996; @loncaric_quantitative_1999; @perez_set_2007; @gillebert_automated_2014].  These methods include fuzzy clustering [@prakash_segmentation_2012; @loncaric_hierarchical_1996], simulated annealing [@loncaric_quantitative_1999], 3-dimensional (3D) mathematical morphology operations [@perez_set_2007], and template-based comparisons [@gillebert_automated_2014].  Unfortunately, no software for ICH segmentation is publicly available.
+
+We provide a completely automated pipeline of analysis from raw images to binary hemorrhage masks and volume estimates, and provide a public webpage to test the software.
+
+# Introduction
+
+## Data
+## Participants and Imaging Data
+We used CT images from patients enrolled in the MISTIE II (Minimally Invasive Surgery plus recombinant-tissue plasminogen activator for Intracerebral Hemorrhage Evacuation) stroke trial [@morgan_preliminary_2008_mistie]. We analyzed $`r nrow(df)`$ scans taken prior to randomization and treatment, corresponding to the first scan acquired post-stroke for $`r length(unique(df[['patientName']]))`$ unique patients.  Inclusion criteria into the study included: $18$ to $80$ years of age and spontaneous supratentorial intracerebral hemorrhage above $20$ milliliters (mL) in size (for full criteria, see @mould_minimally_2013).  The population analyzed here had a mean (standard deviation (SD)) age of $`r mean.age`$ $(`r sd.age`)$ years, was $`r mean.male`\%$ male, and was `r race`.  CT data were collected as part of the Johns Hopkins Medicine IRB-approved MISTIE research studies with written consent from participants.
+
+<!-- % Do not wrap $ in man.tab. -->
+The study protocol was executed with minor, but important, differences across the $`r length(unique(df[,'site']))`$ sites.  
+<!-- Scans were acquired using $`r length(unique(man))`$ scanner manufacturers: `r man.tab`.   -->
+In head CT scanning, the gantry may be tilted for multiple purposes, for example, so that sensitive organs, such as the eyes, are not exposed to X-ray radiation.  This causes scan slices to be acquired at an oblique angle with respect to the patient.  Gantry tilt was observed in $`r n.gant`$ scans.
+
+Slice thickness of the image varied within the scan for `r n.slices` scans.
+
+For example, a scan may have $10$ millimeter (mm) slices at the top and bottom of the brain and $5$mm slices in the middle of the brain.  Therefore, the original scans analyzed had different voxel (volume element) dimensions.  These conditions are characteristic of how scan are presented in many diagnostic cases.
+
+
+
+## Hemorrhage Segmentation and Location Identification
+ICH was manually segmented on CT scans using the OsiriX imaging software by expert readers (OsiriX v. 4.1, Pixmeo; Geneva, Switzerland).  After image quality review, continuous, non-overlapping slices of the entire hemorrhage were segmented.  Readers employed a semiautomated threshold-based approach using a Hounsfield unit (HU) range of $40$ to $80$ to select potential regions of hemorrhage [@bergstrom_variation_1977, smith_imaging_2006]; these regions were then further quality controlled and refined by readers using direct inspection of images.  Binary hemorrhage masks were created by setting voxel intensity to $1$ if the voxel was classified as hemorrhage, regardless of location, and $0$ otherwise.
+
+## Image Processing: Brain Extraction, Registration
+CT images and binary hemorrhage masks were exported from OsiriX to DICOM (Digital Imaging and Communications in Medicine) format.   The image processing pipeline can be seen in Figure~\ref{fig:framework}.   Images with gantry tilt were corrected using a customized MATLAB (The Mathworks, Natick, Massachusetts, USA) user-written script ({\scriptsize \url{http://bit.ly/1ltIM8c}}). Images were converted to the Neuroimaging Informatics Technology Initiative (NIfTI) data format using `dcm2nii` (provided with MRIcro [@rorden_stereotaxic_2000]).  Images were constrained to values $-1024$ and $3071$ HU to remove potential image rescaling errors and artifacts.   No interpolation was done for images with a variable slice thickness. Thickness was determined from the first converted slice and the NIfTI format assumes homogeneous thickness throughout the image.  In a future release of `dcm2nii`, called `dcm2niix`, interpolation will be done for scans with variable slice thickness and gantry-tilt correction will be performed automatically.
+
+
+All image analysis was done in the R statistical software [@RCORE], using the *fslr* [@muschelli2015fslr] package to call functions from the FSL [@jenkinson_fsl_2012] neuroimaging software (version 5.0.4), and the *ANTsR* package to call functions from the ANTs (Advanced Normalization Tools) neuroimaging software [@avants_reproducible_2011].
+
+Brains were extracted to remove skull, eyes, facial and nasal features, extracranial skin, and non-human elements of the image captured by the CT scanner, such as the gantry, pillows, or medical devices.  Removal of these elements was performed using the brain extraction tool (BET) [@smith_fast_2002], a function of FSL, using a previously published validated CT-specific brain extraction protocol [@muschelli_validated_2015].
+
+
+Front matter
+============
+
+The author names and affiliations could be formatted in two ways:
+
+(1) Group the authors per affiliation.
+
+(2) Use footnotes to indicate the affiliations.
+
+See the front matter of this document for examples. You are recommended
+to conform your choice to the journal you are submitting to.
+
+Bibliography styles
+===================
+
+There are various bibliography styles available. You can select the
+style of your choice in the preamble of this document. These styles are
+Elsevier styles based on standard styles like Harvard and Vancouver.
+Please use BibTeX to generate your bibliography and include DOIs
+whenever available.
+
+
+References {#references .unnumbered}
+==========

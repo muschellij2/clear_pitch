@@ -1,4 +1,6 @@
-# Rnosave process.R -N PROC -l mem_free=8G,h_vmem=10G -t 1-23
+##########################################
+# Running on a test set of our data
+##########################################
 library(ichseg)
 library(here)
 library(dplyr)
@@ -12,36 +14,22 @@ library(extrantsr)
 root_dir = here::here()
 test_dir = file.path(root_dir, "test_set")
 proc_dir = file.path(root_dir, "test_set_processed")
-n4 = FALSE
+res_dir = file.path(root_dir, "results")
+n4 = TRUE
 
-imgs = list.files(
-  path = test_dir,
-  recursive = TRUE,
-  pattern = ".nii.gz",
-  full.names = TRUE)
-
-df = data_frame(file = imgs) %>% 
-  mutate(fname = nii.stub(file, bn= TRUE))
-df = df %>% 
-  separate(fname, into =c("id", "date", "time", "type"),
-    sep = "_") %>% 
-  mutate(scan = paste0(id, "_", date, "_", time))
-
-df = df %>% 
-  spread(type, file)
-df$id_proc_dir = file.path(proc_dir, df$id)
-df$stub = sub("_SCAN", "", nii.stub(df$SCAN, 
-  bn = TRUE))
-df$CT = df$SCAN
-df$Msk = df$ROI
+outfile = file.path(res_dir, "test_filenames_df.rds")
+df = read_rds(outfile)
 df$outfile = file.path(df$id_proc_dir,
-  paste0(df$stub, "_",  "predictor_df.rds"))
-df$SCAN = df$ROI = NULL
+  paste0(df$stub, 
+    ifelse(n4, "_n4", ""), 
+    "_",  "predictor_df.rds"))
+
 
 n_ids = nrow(df)
 iid = as.numeric(Sys.getenv("SGE_TASK_ID"))
 if (is.na(iid)) {
-  iid = 8
+  # 28 has bad header
+  iid = 220
 }
 
 id = df$id[iid]
@@ -71,17 +59,8 @@ if (file.exists(mask_file)) {
   mask = NULL
 }
 
+
 if (n4) {
-  img = readnii(img)
-  brain_mask = readnii(mask_file)
-  img = mask_img(img, mask = brain_mask)
-  img[ img < 0] = 0  
-  # n4 = bias_correct(img, correction = "N4",
-  #   mask = brain_mask)
-  img = window_img(img, c(0, 100))
-  n4_2 = bias_correct(img, correction = "N4",
-    mask = brain_mask)
-  img = n4_2
   stub = paste0(stub, "_n4")
 }
 
@@ -95,8 +74,27 @@ outfile = file.path(id_proc_dir,
     "predictor_df.rds"))
 
 
+if (!file.exists(outfile) || 
+    !file.exists(mask_file)) {
 
-if (!file.exists(outfile)) {
+  if (n4) {
+    if (file.exists(mask_file)) {
+      brain_mask = readnii(mask_file)
+    } else {
+      ss = CT_Skull_Strip_robust(img, 
+        retimg = TRUE)
+      brain_mask = ss > 0
+    }    
+    img = readnii(img)
+    img = mask_img(img, mask = brain_mask)
+    img[ img < 0 ] = 0  
+    # n4 = bias_correct(img, correction = "N4",
+    #   mask = brain_mask)
+    img = window_img(img, c(0, 100))
+    n4_2 = bias_correct(img, correction = "N4",
+      mask = brain_mask)
+    img = n4_2
+  }
 
   proc = ich_process_predictors(
     img = img, 
@@ -113,10 +111,19 @@ if (!file.exists(outfile)) {
     as.integer(idf$any_zero_neighbor)
   idf$mask = idf$mask > 0
   proc$img.pred$df = idf
-  idf = idf[ idf$mask | idf$Y > 0, ]
+  if (!all(is.na(idf$Y))) {
+    ind = which(idf$mask | idf$Y > 0)
+  } else {
+    ind = idf$mask
+  }
+  idf = idf[ ind, ]
+
 
   write_rds(idf, path = outfile)
 } 
+
+warnings()
+
 # else {
 #   idf = read_rds(outfile)
 # }

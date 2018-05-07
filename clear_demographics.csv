@@ -1,0 +1,501 @@
+patientName,ich_location,ich_volume,ivh_volume,all_volume,age,sex,race,hispanic
+1004001,Deep,3.59,11.55,15.14,56,Female,Black/African American,not of Hispanic
+1004003,Thalamus,7.02,26.11,33.47,60,Male,Black/African American,not of Hispanic
+1004034,Thalamus,22.99,34.9,58.7,57,Female,White/Caucasian,not of Hispanic
+1004054,Thalamus,15.31,14.5,29.81,69,Female,Black/African American,not of Hispanic
+1004066,Thalamus,10.61,45.02,55.63,53,Female,Black/African American,not of Hispanic
+1004087,Thalamus,9.54,23.29,32.83,50,Male,Black/African American,not of Hispanic
+1004153,Thalamus,3.68,13.09,16.77,45,Female,Black/African American,not of Hispanic
+1004233,Deep,13.02,20.92,34.15,65,Female,Black/African American,not of Hispanic
+1004267,Deep,2.48,52.85,55.33,53,Male,Black/African American,not of Hispanic
+1004289,Lobar,17.17,25.51,42.68,55,Female,Black/African American,not of Hispanic
+1004341,Probably Primary IVH,0,1.56,1.56,62,Male,White/Caucasian,not of Hispanic
+1004343,Deep,1.12,114.66,115.9,68,Male,White/Caucasian,not of Hispanic
+1004344,Thalamus,22.64,8.18,34.62,54,Female,Black/African American,not of Hispanic
+1004363,Thalamus,19.79,17.11,37.1,51,Male,Black/African American,not of Hispanic
+1004412,Deep,5.29,20.44,25.73,40,Male,Black/African American,not of Hispanic
+1004435,Thalamus,12.6,19.9,32.54,51,Male,Black/African American,not of Hispanic
+1004482,Thalamus,4.92,20.13,25.05,48,Female,Black/African American,not of Hispanic
+1004483,Thalamus,11.91,10.09,22,59,Male,White/Caucasian,of Hispanic
+1014012,Thalamus,3.53,17.39,20.92,62,Female,Not Specified,of Hispanic
+1014223,Thalamus,0.93,12.68,13.81,49,Male,White/Caucasian,of Hispanic
+1014318,Lobar,0.44,32.62,33.06,45,Male,Black/African American,not of Hispanic
+1024035,Thalamus,13.76,36.89,50.65,63,Female,Black/African American,not of Hispanic
+1024101,Thalamus,9.5,18.96,28.64,50,Female,Black/African American,not of Hispanic
+1024193,Thalamus,23.08,13.01,36.47,56,Male,White/Caucasian,not of Hispanic
+1024217,Probably Primary IVH,0.15,20.7,22.32,55,Female,Black/African American,not of Hispanic
+1044104,Thalamus,6.18,4.46,10.64,61,Female,Black/African American,not of Hispanic
+1044105,Probably Primary IVH,0.05,20.6,20.65,54,Male,Black/African American,of Hispanic
+1044168,Thalamus,6.5,6.81,13.31,61,Female,Black/African American,not of Hispanic
+1044185,Thalamus,15.82,78.17,93.99,67,Male,Black/African American,of Hispanic
+1044427,Thalamus,1.07,23.56,24.63,51,Male,Black/African American,not of Hispanic
+1044428,Thalamus,3.51,29.69,33.2,54,Female,Black/African American,not of Hispanic
+1114112,Probably Primary IVH,0,66.11,66.11,79,Female,White/Caucasian,not of Hispanic
+1114170,Thalamus,5.35,49.44,56.61,79,Male,White/Caucasian,not of Hispanic
+1114171,Thalamus,20.11,16.92,37.03,59,Male,White/Caucasian,not of Hispanic
+1114175,Thalamus,7.92,12.17,20.09,57,Male,White/Caucasian,not of Hispanic
+1114282,Deep,7.04,42.11,49.5,63,Male,White/Caucasian,not of Hispanic
+1114337,Thalamus,2.01,11.23,13.24,56,Male,White/Caucasian,not of Hispanic
+1114376,Probably Primary IVH,0,41.04,41.04,50,Male,White/Caucasian,not of Hispanic
+1114413,Thalamus,24.97,13.23,38.2,57,Female,White/Caucasian,not of Hispanic
+1114423,Thalamus,23.62,23.61,47.23,78,Male,White/Caucasian,not of Hispanic
+1114452,Thalamus,15.91,48.2,64.11,78,Female,White/Caucasian,not of Hispanic
+1204042,Thalamus,4.24,28.2,32.44,54,Female,White/Caucasian,of Hispanic
+1204143,Lobar,18.9,19.94,38.84,62,Female,Black/African American,not of Hispanic
+1204169,Thalamus,20.61,21.03,41.64,72,Male,Black/African American,not of Hispanic
+1314038,Thalamus,15.53,17.07,32.71,59,Male,Black/African American,not of Hispanic
+1314061,Probably Primary IVH,0,5.85,5.85,35,Female,Black/African American,not of Hispanic
+1314068,Thalamus,10.26,38.65,49.44,72,Male,White/Caucasian,not of Hispanic
+1314202,Thalamus,14.62,39.54,54.16,60,Male,Black/African American,not of Hispanic
+1334133,Thalamus,5.54,21.3,26.84,33,Male,Black/African American,not of Hispanic
+1334150,Thalamus,5.24,11.09,16.33,55,Male,White/Caucasian,not of Hispanic
+1334151,Thalamus,9.07,19.94,29.01,63,Male,White/Caucasian,not of Hispanic
+1334156,Deep,2.28,24.27,26.55,48,Male,Black/African American,not of Hispanic
+1334163,Thalamus,18.77,21.11,39.88,54,Female,Black/African American,not of Hispanic
+1334189,Thalamus,6.79,9.24,16.03,43,Female,White/Caucasian,not of Hispanic
+1334211,Thalamus,13.76,22.15,37.39,53,Male,Black/African American,not of Hispanic
+1334215,Thalamus,6.1,1.92,8.02,45,Male,Black/African American,not of Hispanic
+1334227,Probably Primary IVH,0,42.68,43.7,46,Male,White/Caucasian,not of Hispanic
+1334251,Deep,2.25,11.42,13.91,54,Female,Asian,not of Hispanic
+1334252,Probably Primary IVH,0,5.74,5.74,60,Male,Black/African American,not of Hispanic
+1334256,Thalamus,15.09,11.28,26.37,58,Female,White/Caucasian,of Hispanic
+1334257,Deep,7.69,24.86,32.55,43,Male,Black/African American,not of Hispanic
+1334263,Thalamus,6.62,20.71,27.33,42,Male,Black/African American,not of Hispanic
+1334280,Thalamus,9.68,7.83,17.55,44,Male,Black/African American,not of Hispanic
+1334319,Thalamus,8.51,15.49,24.12,52,Female,White/Caucasian,not of Hispanic
+1334334,Thalamus,23.95,19.72,43.67,58,Female,Black/African American,not of Hispanic
+1334350,Deep,27.43,18.19,45.62,74,Male,White/Caucasian,not of Hispanic
+1334357,Probably Primary IVH,0,23.29,23.33,50,Female,White/Caucasian,not of Hispanic
+1334393,Thalamus,13.14,30.28,43.54,60,Male,Asian,not of Hispanic
+1334443,Thalamus,12.77,6.89,19.66,62,Female,White/Caucasian,not of Hispanic
+1344053,Thalamus,10.65,8.08,18.73,59,Female,White/Caucasian,not of Hispanic
+1344075,Thalamus,7.48,38.91,47.11,54,Male,Native Hawaiian or other Pacific Islander,not of Hispanic
+1344146,Deep,0.74,51.91,52.65,57,Female,Black/African American,not of Hispanic
+1344149,Thalamus,19.49,43.39,62.92,62,Male,White/Caucasian,not of Hispanic
+1344190,Deep,2.03,30.46,32.49,81,Female,White/Caucasian,not of Hispanic
+1344246,Thalamus,5.21,47.87,53.08,49,Male,White/Caucasian,not of Hispanic
+1344275,Deep,27.76,37.67,72.85,61,Male,Black/African American,not of Hispanic
+1344351,Thalamus,5.95,8.89,14.84,45,Male,Black/African American,not of Hispanic
+1344408,Thalamus,5.5,14.69,20.19,60,Female,Black/African American,not of Hispanic
+1344416,Thalamus,23.23,48.5,71.73,71,Male,White/Caucasian,not of Hispanic
+1344422,Thalamus,12.81,12.41,25.22,43,Male,Black/African American,not of Hispanic
+1344474,Thalamus,17.02,20.93,37.95,58,Female,Black/African American,not of Hispanic
+1434039,Thalamus,8.91,21.21,30.12,70,Male,Black/African American,not of Hispanic
+1434044,Thalamus,11.11,33.61,44.72,51,Male,Black/African American,not of Hispanic
+1434055,Thalamus,8.86,36.63,45.49,73,Male,White/Caucasian,not of Hispanic
+1434057,Probably Primary IVH,0,94.67,94.67,72,Male,White/Caucasian,not of Hispanic
+1434152,Deep,4.64,18.02,22.73,72,Female,American Indian or Alaskan Native,not of Hispanic
+1434210,Thalamus,8.22,11.76,19.98,50,Male,White/Caucasian,not of Hispanic
+1434265,Thalamus,7.66,22.27,29.93,63,Female,White/Caucasian,not of Hispanic
+1434277,Deep,5.57,50.83,56.4,65,Male,White/Caucasian,not of Hispanic
+1434304,Thalamus,6.85,9.28,21.22,64,Female,Black/African American,not of Hispanic
+1434324,Thalamus,10.44,14.56,25.08,61,Male,White/Caucasian,not of Hispanic
+1434410,Thalamus,1.97,19.03,21,40,Female,White/Caucasian,of Hispanic
+1434437,Thalamus,15,24.83,39.83,55,Male,White/Caucasian,not of Hispanic
+1434447,Thalamus,NA,NA,NA,71,Female,Black/African American,not of Hispanic
+1444027,Probably Primary IVH,0,49.09,49.09,45,Female,White/Caucasian,not of Hispanic
+1444220,Thalamus,10.33,26.34,36.67,40,Male,Black/African American,not of Hispanic
+1534085,Deep,5.31,46.73,52.04,77,Female,White/Caucasian,not of Hispanic
+1534287,Thalamus,7.3,43.24,50.54,51,Male,White/Caucasian,not of Hispanic
+1544295,Thalamus,14.73,6.19,20.92,55,Male,Black/African American,not of Hispanic
+1544310,Probably Primary IVH,0,11.35,11.35,68,Female,White/Caucasian,of Hispanic
+1544429,Deep,5.39,15.1,20.49,39,Male,Black/African American,not of Hispanic
+1544479,Thalamus,8.37,49.49,57.86,79,Male,White/Caucasian,not of Hispanic
+1574028,Thalamus,16.41,22.39,38.8,40,Male,White/Caucasian,of Hispanic
+1574095,Deep,11.92,11.45,23.45,28,Male,White/Caucasian,of Hispanic
+1574145,Thalamus,16.08,10.26,26.34,49,Male,Black/African American,not of Hispanic
+1574328,Thalamus,15.58,1.3,17.97,68,Male,White/Caucasian,not of Hispanic
+1574358,Thalamus,8.06,10.12,18.18,57,Male,Black/African American,not of Hispanic
+1574432,Thalamus,12.92,14.56,27.48,61,Male,White/Caucasian,of Hispanic
+1574485,Deep,NA,NA,NA,42,Male,White/Caucasian,of Hispanic
+1574489,Thalamus,NA,NA,NA,66,Male,Asian,not of Hispanic
+1614030,Deep,7.3,41.81,49.11,59,Male,Black/African American,not of Hispanic
+1614032,Deep,6.24,83.86,90.46,55,Female,White/Caucasian,not of Hispanic
+1614368,Thalamus,6.4,36.55,42.95,66,Male,Asian,not of Hispanic
+1614378,Thalamus,23.25,35.84,59.3,65,Female,Black/African American,not of Hispanic
+1614424,Thalamus,8.24,26.97,35.32,52,Female,White/Caucasian,not of Hispanic
+1704077,Deep,7.91,11.64,19.55,33,Female,Black/African American,not of Hispanic
+1704082,Thalamus,11.33,36.59,47.92,45,Male,White/Caucasian,not of Hispanic
+1704093,Thalamus,6.07,59.2,65.27,64,Male,White/Caucasian,not of Hispanic
+1704098,Thalamus,10.12,17.78,27.9,70,Female,White/Caucasian,not of Hispanic
+1704388,Deep,15.97,21.08,37.05,64,Male,White/Caucasian,not of Hispanic
+1704491,Thalamus,12.03,5.03,17.06,57,Male,White/Caucasian,not of Hispanic
+1734007,Deep,0.47,26.03,26.5,42,Male,Black/African American,not of Hispanic
+1734008,Thalamus,7.64,16.63,24.27,77,Female,White/Caucasian,not of Hispanic
+1734010,Deep,7.96,24.46,32.42,71,Male,White/Caucasian,not of Hispanic
+1734017,Probably Primary IVH,0.04,37.03,37.07,76,Female,Not Specified,of Hispanic
+1734052,Thalamus,11.02,23.23,34.25,55,Male,Black/African American,not of Hispanic
+1734103,Deep,2.22,19.43,21.65,50,Female,Black/African American,not of Hispanic
+1734231,Probably Primary IVH,0,132.57,132.57,61,Male,Black/African American,not of Hispanic
+1734279,Thalamus,11.85,19.79,31.64,64,Female,Black/African American,not of Hispanic
+1734352,Probably Primary IVH,0,42.53,42.53,38,Male,Black/African American,not of Hispanic
+1734353,Thalamus,7.14,11.94,19.08,51,Male,White/Caucasian,not of Hispanic
+1734354,Thalamus,17.86,17.27,35.73,51,Male,White/Caucasian,not of Hispanic
+1734372,Thalamus,25.63,27.92,53.58,58,Female,White/Caucasian,not of Hispanic
+1734382,Thalamus,2.49,19.12,21.66,60,Male,Black/African American,not of Hispanic
+1734385,Thalamus,6.86,11.31,18.17,45,Female,Black/African American,not of Hispanic
+1734405,Thalamus,3.5,7.81,11.31,53,Male,White/Caucasian,not of Hispanic
+1734414,Thalamus,9.49,17.46,26.95,45,Female,Black/African American,not of Hispanic
+1734442,Thalamus,19.64,18.78,38.42,39,Male,Black/African American,not of Hispanic
+1734450,Thalamus,5.8,7.12,12.92,61,Female,Black/African American,not of Hispanic
+1734488,Thalamus,NA,NA,NA,51,Male,Black/African American,not of Hispanic
+1754284,Thalamus,34.29,12.08,46.37,57,Female,White/Caucasian,not of Hispanic
+1794011,Thalamus,7.69,17.15,24.84,32,Female,White/Caucasian,of Hispanic
+1794026,Thalamus,19.72,56.57,76.29,67,Male,Not Specified,of Hispanic
+1794062,Thalamus,15.24,22.6,37.84,62,Male,White/Caucasian,of Hispanic
+1794070,Thalamus,19.61,29.05,49.08,45,Male,White/Caucasian,of Hispanic
+1794094,Thalamus,12.51,15.26,27.77,44,Male,White/Caucasian,of Hispanic
+1794154,Thalamus,16.29,15.27,31.56,48,Female,White/Caucasian,not of Hispanic
+1794172,Thalamus,4.59,50.19,54.78,49,Male,White/Caucasian,of Hispanic
+1794174,Deep,2.29,15.56,17.85,54,Male,Black/African American,not of Hispanic
+1794198,Thalamus,2.4,7.61,10.01,53,Male,Black/African American,not of Hispanic
+1794208,Thalamus,4.06,17.46,21.52,50,Female,White/Caucasian,of Hispanic
+1794253,Thalamus,8.63,9.17,17.8,60,Female,White/Caucasian,of Hispanic
+1794375,Thalamus,15.72,10.01,25.84,64,Female,White/Caucasian,of Hispanic
+1794476,Probably Primary IVH,0,83.7,83.7,48,Male,White/Caucasian,not of Hispanic
+1824180,Deep,14.35,20.43,34.78,50,Male,White/Caucasian,not of Hispanic
+1824285,Thalamus,4.72,9.88,14.6,49,Male,White/Caucasian,not of Hispanic
+1824326,Thalamus,9.18,10.68,19.86,69,Male,White/Caucasian,not of Hispanic
+1824331,Thalamus,27.63,20.13,52.44,72,Female,White/Caucasian,not of Hispanic
+1824444,Deep,5.2,25.73,30.93,48,Female,White/Caucasian,not of Hispanic
+1844036,Thalamus,27.27,14.07,41.34,55,Male,White/Caucasian,not of Hispanic
+1844224,Thalamus,0.22,26.2,26.42,39,Male,White/Caucasian,not of Hispanic
+1844320,Thalamus,20.1,9.61,29.93,52,Male,White/Caucasian,not of Hispanic
+1914005,Thalamus,21.15,14.13,35.28,56,Female,Black/African American,not of Hispanic
+1944002,Deep,2.82,8.18,11,45,Male,Black/African American,not of Hispanic
+1944004,Thalamus,21.46,21.01,42.47,54,Female,Black/African American,not of Hispanic
+1944006,Deep,20.61,25.81,46.42,43,Female,White/Caucasian,not of Hispanic
+1944021,Deep,4.09,19.02,23.11,64,Female,Black/African American,not of Hispanic
+1944041,Thalamus,14.77,48.61,63.38,80,Female,Black/African American,not of Hispanic
+1944043,Thalamus,1.12,1.82,3.24,50,Male,Black/African American,not of Hispanic
+1944045,Thalamus,4.34,22.56,27.12,42,Female,Black/African American,not of Hispanic
+1944076,Thalamus,6.93,39.59,46.52,55,Male,Black/African American,not of Hispanic
+1944195,Thalamus,14.25,13.84,28.09,54,Female,Black/African American,not of Hispanic
+1944254,Deep,16.24,47.52,63.76,69,Female,Black/African American,not of Hispanic
+1944300,Deep,0,33.54,33.54,48,Female,Black/African American,not of Hispanic
+1944327,Deep,10.25,55.64,68.04,60,Male,Black/African American,not of Hispanic
+1944345,Deep,1.2,6.71,7.91,42,Male,Black/African American,not of Hispanic
+1944465,Thalamus,NA,NA,NA,67,Female,Black/African American,not of Hispanic
+1944469,Thalamus,1.78,19.23,21.01,48,Female,Black/African American,not of Hispanic
+1944500,Thalamus,17.18,37.8,54.98,59,Male,Black/African American,not of Hispanic
+1984401,Thalamus,8.88,2.97,11.85,71,Female,White/Caucasian,not of Hispanic
+1984409,Thalamus,6.86,0.44,7.3,51,Male,White/Caucasian,not of Hispanic
+1984475,Thalamus,15.01,17.73,32.74,66,Female,White/Caucasian,not of Hispanic
+2044107,Probably Primary IVH,0,31.06,31.06,48,Male,White/Caucasian,not of Hispanic
+2044130,Thalamus,0.13,21.68,21.81,55,Female,White/Caucasian,not of Hispanic
+2044181,Thalamus,27.26,28.47,55.73,80,Female,White/Caucasian,not of Hispanic
+2044281,Thalamus,25.8,28.41,54.21,48,Male,Black/African American,not of Hispanic
+2044286,Deep,1.16,43.78,44.94,46,Female,White/Caucasian,not of Hispanic
+2044362,Thalamus,19.27,32.86,52.13,60,Male,White/Caucasian,not of Hispanic
+2044436,Thalamus,31.75,15.78,48.69,66,Male,White/Caucasian,not of Hispanic
+2044480,Thalamus,10.54,22.68,33.22,72,Male,White/Caucasian,not of Hispanic
+2054106,Probably Primary IVH,0,87.68,87.68,70,Male,White/Caucasian,not of Hispanic
+2054118,Probably Primary IVH,0.17,45.12,45.92,63,Male,White/Caucasian,not of Hispanic
+2054155,Deep,8.55,45.12,53.67,50,Female,White/Caucasian,not of Hispanic
+2054177,Deep,11.78,8.61,20.39,67,Female,White/Caucasian,not of Hispanic
+2054209,Deep,15.7,24.69,40.39,74,Female,White/Caucasian,not of Hispanic
+2054273,Thalamus,17.57,40.07,57.64,66,Male,White/Caucasian,not of Hispanic
+2054305,Thalamus,3.99,6.38,10.37,53,Male,White/Caucasian,not of Hispanic
+2054329,Thalamus,17.69,14.79,32.48,42,Female,White/Caucasian,not of Hispanic
+2054499,Probably Primary IVH,NA,NA,NA,74,Male,White/Caucasian,not of Hispanic
+2084013,Deep,0.92,10.93,11.85,33,Male,Black/African American,not of Hispanic
+2084037,Deep,5.62,24.06,29.68,40,Male,Black/African American,not of Hispanic
+2084186,Deep,5.52,27.36,32.88,58,Female,Black/African American,not of Hispanic
+2084191,Probably Primary IVH,0,23.85,27.07,53,Male,Asian,not of Hispanic
+2084361,Thalamus,2.77,13.31,16.59,46,Male,Black/African American,not of Hispanic
+2084380,Thalamus,17.54,20.72,38.26,46,Male,Black/African American,not of Hispanic
+2084384,Thalamus,19.84,15.73,36.12,57,Female,Black/African American,not of Hispanic
+2084415,Thalamus,3.8,8.82,12.62,58,Female,Black/African American,not of Hispanic
+2144099,Thalamus,7.49,2.03,9.57,79,Male,White/Caucasian,not of Hispanic
+2144148,Deep,12.72,27.32,40.49,57,Female,White/Caucasian,not of Hispanic
+2144216,Thalamus,20.58,7.89,28.47,58,Male,White/Caucasian,not of Hispanic
+2144407,Thalamus,27.48,88.57,116.05,52,Male,White/Caucasian,not of Hispanic
+2164262,Thalamus,18.96,17.8,36.76,53,Male,White/Caucasian,not of Hispanic
+2164268,Thalamus,34.35,12.39,46.77,51,Male,Black/African American,not of Hispanic
+2164278,Thalamus,10.28,13.07,23.53,64,Female,White/Caucasian,not of Hispanic
+2164307,Thalamus,16.54,21.93,39.21,66,Male,Black/African American,not of Hispanic
+2164338,Thalamus,8.91,18.93,27.84,59,Female,Black/African American,not of Hispanic
+2164355,Probably Primary IVH,0.79,53.68,55.81,70,Female,White/Caucasian,not of Hispanic
+2164356,Thalamus,1.27,19.96,21.23,61,Female,Black/African American,not of Hispanic
+2164369,Thalamus,34.92,39.68,74.6,45,Male,White/Caucasian,not of Hispanic
+2164377,Thalamus,11.68,23.26,34.94,54,Male,White/Caucasian,not of Hispanic
+2164397,Thalamus,14.39,14.43,28.82,66,Female,Black/African American,not of Hispanic
+2164403,Thalamus,12.57,20.68,33.45,53,Female,Black/African American,not of Hispanic
+2164404,Deep,7.1,28.01,35.61,71,Female,Black/African American,not of Hispanic
+2164438,Deep,5.91,8.15,14.06,60,Female,Black/African American,not of Hispanic
+2164445,Deep,15.16,13.4,28.56,52,Male,White/Caucasian,not of Hispanic
+2164459,Lobar,2.1,30.83,32.93,41,Female,Black/African American,not of Hispanic
+2164477,Thalamus,15.86,18.87,34.73,52,Male,Black/African American,not of Hispanic
+2164478,Deep,0.37,18.03,18.4,42,Female,Black/African American,not of Hispanic
+2174009,Deep,5.59,59.13,64.72,28,Female,Black/African American,not of Hispanic
+2174020,Thalamus,1.03,1.68,2.71,46,Male,Black/African American,not of Hispanic
+2174022,Probably Primary IVH,0,45.04,45.23,58,Female,Black/African American,not of Hispanic
+2174048,Thalamus,12.94,10.23,23.17,48,Male,Black/African American,not of Hispanic
+2174096,Lobar,21.61,29.87,51.48,46,Male,Black/African American,not of Hispanic
+2184018,Probably Primary IVH,3.2,11.81,15.01,62,Male,White/Caucasian,not of Hispanic
+2184091,Probably Primary IVH,0,30.34,30.34,42,Male,Black/African American,not of Hispanic
+2184203,Probably Primary IVH,0,34.24,34.24,41,Female,White/Caucasian,not of Hispanic
+2184314,Deep,2.06,12.66,14.72,55,Female,Black/African American,not of Hispanic
+2204056,Deep,12.03,43.84,56.05,59,Male,White/Caucasian,of Hispanic
+2204064,Thalamus,1.97,16.2,18.36,70,Male,White/Caucasian,of Hispanic
+2204083,Thalamus,1.17,8.86,10.37,72,Male,White/Caucasian,of Hispanic
+2204113,Thalamus,10.5,20.67,31.17,46,Female,White/Caucasian,of Hispanic
+2204395,Deep,1.03,82.59,83.62,77,Female,White/Caucasian,of Hispanic
+2204473,Deep,6.32,49.03,55.35,55,Male,Black/African American,not of Hispanic
+2214086,Lobar,0,62.24,62.36,65,Male,White/Caucasian,not of Hispanic
+2214399,Thalamus,6.71,24.45,31.16,67,Male,White/Caucasian,of Hispanic
+2224072,Deep,1.52,39.07,40.59,45,Male,Black/African American,not of Hispanic
+2234014,Probably Primary IVH,0.06,89.5,89.56,48,Male,White/Caucasian,not of Hispanic
+2234019,Thalamus,3.92,11.53,15.45,72,Female,Black/African American,not of Hispanic
+2234024,Thalamus,10.55,22,32.55,43,Female,Black/African American,not of Hispanic
+2234058,Deep,10.61,18.83,29.44,57,Female,Black/African American,not of Hispanic
+2234060,Thalamus,23.45,41.48,64.93,54,Male,Black/African American,not of Hispanic
+2234084,Deep,1.41,41.14,42.55,45,Male,Not Specified,of Hispanic
+2234100,Thalamus,12.42,19.81,32.23,60,Male,Black/African American,not of Hispanic
+2234123,Thalamus,23.87,31.34,57.1,52,Male,Black/African American,not of Hispanic
+2234126,Probably Primary IVH,5.4,25.68,31.49,60,Female,Black/African American,not of Hispanic
+2234127,Deep,6.18,53.97,60.15,76,Female,Black/African American,not of Hispanic
+2234162,Deep,5,57.14,62.21,57,Male,Black/African American,not of Hispanic
+2234176,Deep,2.78,41.07,43.85,60,Male,Black/African American,not of Hispanic
+2234182,Deep,2.23,53.07,55.65,34,Female,White/Caucasian,of Hispanic
+2234219,Lobar,11.76,18.47,30.23,66,Female,White/Caucasian,not of Hispanic
+2234221,Thalamus,3.54,23.28,31.48,68,Female,Black/African American,not of Hispanic
+2234235,Thalamus,10.26,1,11.26,52,Female,Black/African American,not of Hispanic
+2234264,Deep,1.45,75.81,77.75,51,Female,White/Caucasian,not of Hispanic
+2234270,Deep,6.64,27.94,34.58,43,Female,Black/African American,not of Hispanic
+2234283,Probably Primary IVH,0,23.8,23.94,46,Male,Black/African American,not of Hispanic
+2234308,Thalamus,13.39,82.65,97.07,54,Male,Black/African American,not of Hispanic
+2234317,Deep,9.11,30.85,40.56,66,Female,White/Caucasian,not of Hispanic
+2234332,Thalamus,14.99,13.21,28.2,64,Male,White/Caucasian,not of Hispanic
+2234371,Deep,3.78,22.21,25.99,56,Female,Black/African American,not of Hispanic
+2234460,Thalamus,5.51,3.57,9.08,63,Male,Black/African American,not of Hispanic
+2234481,Thalamus,13.02,36.72,51.29,53,Male,White/Caucasian,of Hispanic
+2254138,Thalamus,20.23,29.69,49.92,80,Female,Multi-Racial,not of Hispanic
+2254142,Deep,17.45,15.89,33.34,58,Male,White/Caucasian,of Hispanic
+2254166,Thalamus,3.63,3.77,7.4,62,Male,White/Caucasian,not of Hispanic
+2254184,Probably Primary IVH,0,46.85,46.85,65,Male,White/Caucasian,not of Hispanic
+2254249,Thalamus,10.9,26.02,36.92,58,Female,White/Caucasian,not of Hispanic
+2254316,Deep,0.1,73.19,73.29,80,Male,White/Caucasian,not of Hispanic
+2254454,Probably Primary IVH,0.55,37.53,38.08,67,Male,Asian,not of Hispanic
+2254490,Thalamus,NA,NA,NA,66,Male,Black/African American,not of Hispanic
+2304241,Thalamus,20.07,19.8,39.87,77,Female,White/Caucasian,not of Hispanic
+2324121,Thalamus,18.15,42.62,60.77,74,Male,White/Caucasian,of Hispanic
+2324207,Thalamus,7.54,11.88,19.42,51,Male,Black/African American,not of Hispanic
+2324238,Thalamus,3.56,10.72,14.28,54,Female,Black/African American,not of Hispanic
+2324269,Thalamus,18.87,41.37,60.31,61,Male,Black/African American,not of Hispanic
+2324346,Thalamus,6.71,21.87,28.58,76,Male,White/Caucasian,not of Hispanic
+2324418,Probably Primary IVH,0,52.06,52.06,51,Female,White/Caucasian,not of Hispanic
+2324441,Thalamus,13.17,16.69,29.86,67,Female,White/Caucasian,not of Hispanic
+2324467,Probably Primary IVH,0.29,75.41,88.43,55,Male,White/Caucasian,not of Hispanic
+2324468,Thalamus,16.03,58.62,74.65,57,Male,Black/African American,not of Hispanic
+2344173,Thalamus,10.04,42.5,52.54,69,Female,Black/African American,not of Hispanic
+2344200,Thalamus,32.59,53.06,85.65,61,Male,White/Caucasian,not of Hispanic
+2344374,Probably Primary IVH,0,22.26,22.3,62,Female,Black/African American,not of Hispanic
+2344387,Thalamus,9.69,9.97,19.66,57,Male,Black/African American,not of Hispanic
+2374059,Thalamus,23.13,59.5,82.83,63,Male,White/Caucasian,not of Hispanic
+2374073,Thalamus,11.21,32.6,47.07,65,Male,White/Caucasian,not of Hispanic
+2374080,Thalamus,15.75,26.64,42.39,56,Male,White/Caucasian,not of Hispanic
+2374097,Thalamus,13.03,21.94,34.97,60,Male,White/Caucasian,not of Hispanic
+2374117,Probably Primary IVH,0,27.93,27.93,67,Female,White/Caucasian,not of Hispanic
+2374119,Thalamus,6.4,6.59,12.99,59,Male,White/Caucasian,not of Hispanic
+2374120,Lobar,0.39,33.91,37.02,46,Female,Native Hawaiian or other Pacific Islander,not of Hispanic
+2374161,Thalamus,4.13,5,9.13,58,Male,White/Caucasian,not of Hispanic
+2374179,Thalamus,22.58,15.81,38.39,76,Male,White/Caucasian,not of Hispanic
+2374188,Deep,1.35,25.7,27.05,56,Female,White/Caucasian,not of Hispanic
+2374205,Probably Primary IVH,0,58.67,59.4,77,Male,White/Caucasian,not of Hispanic
+2374213,Thalamus,6.54,1.17,7.71,65,Male,White/Caucasian,not of Hispanic
+2374232,Thalamus,17.89,8.66,26.55,73,Male,White/Caucasian,not of Hispanic
+2374245,Thalamus,14.38,11.06,25.44,60,Male,White/Caucasian,not of Hispanic
+2374259,Thalamus,10.13,18.49,28.62,74,Male,White/Caucasian,not of Hispanic
+2374274,Thalamus,9.32,14.12,23.44,66,Male,White/Caucasian,not of Hispanic
+2374294,Thalamus,14.36,8.56,22.92,55,Female,White/Caucasian,not of Hispanic
+2374323,Thalamus,10.36,7.94,18.3,52,Male,White/Caucasian,not of Hispanic
+2374364,Thalamus,0.15,26.64,26.79,70,Male,White/Caucasian,not of Hispanic
+2374419,Thalamus,3.19,24.58,27.77,66,Male,White/Caucasian,not of Hispanic
+2374420,Thalamus,5.32,24.06,29.82,58,Male,White/Caucasian,not of Hispanic
+2374433,Thalamus,23.14,29.35,52.49,74,Female,White/Caucasian,not of Hispanic
+2374439,Thalamus,15.27,4.1,19.37,74,Female,White/Caucasian,not of Hispanic
+2374498,Deep,NA,NA,NA,78,Male,White/Caucasian,not of Hispanic
+2384067,Deep,11.08,25.37,36.45,48,Male,Black/African American,not of Hispanic
+2384114,Thalamus,22.68,12.61,35.95,50,Male,Asian,not of Hispanic
+2384115,Probably Primary IVH,0.62,3.25,5.32,48,Male,White/Caucasian,not of Hispanic
+2384136,Thalamus,11.75,9.38,21.13,53,Female,Native Hawaiian or other Pacific Islander,not of Hispanic
+2384160,Thalamus,5.72,31.69,39.75,67,Female,White/Caucasian,of Hispanic
+2384165,Probably Primary IVH,0.34,27.86,29.59,79,Female,White/Caucasian,not of Hispanic
+2384187,Thalamus,22.93,33.46,57.02,61,Female,White/Caucasian,not of Hispanic
+2384196,Thalamus,16.6,24.22,41.31,58,Female,White/Caucasian,of Hispanic
+2384255,Deep,10.37,18.48,28.85,59,Female,White/Caucasian,not of Hispanic
+2384302,Deep,4.65,30.55,35.2,66,Male,White/Caucasian,of Hispanic
+2384348,Thalamus,9.56,5.02,14.58,62,Male,White/Caucasian,not of Hispanic
+2384383,Thalamus,8.19,4.01,12.44,32,Female,Native Hawaiian or other Pacific Islander,not of Hispanic
+2384431,Thalamus,0.32,13.59,15.36,60,Female,White/Caucasian,of Hispanic
+2384448,Thalamus,22.22,35.92,58.32,66,Male,White/Caucasian,not of Hispanic
+2404135,Thalamus,6.88,31.04,44.69,60,Male,Black/African American,not of Hispanic
+2404147,Probably Primary IVH,0,9.12,9.12,67,Female,Asian,not of Hispanic
+2404157,Probably Primary IVH,0.14,15.79,15.93,38,Male,White/Caucasian,not of Hispanic
+2404183,Probably Primary IVH,0.83,21.88,23.08,77,Female,White/Caucasian,not of Hispanic
+2404206,Thalamus,3.91,8.94,12.85,76,Female,Black/African American,not of Hispanic
+2404229,Probably Primary IVH,0,134.81,135.06,59,Female,Black/African American,not of Hispanic
+2404240,Thalamus,21.5,14.09,35.59,66,Female,Black/African American,not of Hispanic
+2404349,Deep,8.91,14.84,23.76,61,Female,Asian,not of Hispanic
+2404360,Deep,10.5,17.85,28.35,83,Male,White/Caucasian,not of Hispanic
+2404394,Deep,4,19.93,23.93,60,Female,Black/African American,not of Hispanic
+2404400,Deep,2.83,35.19,38.02,55,Male,Black/African American,not of Hispanic
+2404462,Thalamus,16.84,1.98,18.82,61,Male,Black/African American,not of Hispanic
+2404472,Thalamus,4.47,14.65,19.12,45,Male,Black/African American,not of Hispanic
+2414339,Probably Primary IVH,0,47.96,47.96,55,Male,White/Caucasian,not of Hispanic
+2414373,Probably Primary IVH,2.24,24.33,26.57,30,Female,White/Caucasian,not of Hispanic
+2414496,Thalamus,NA,NA,NA,38,Female,Black/African American,not of Hispanic
+2434033,Deep,3.89,33.54,37.43,55,Male,White/Caucasian,of Hispanic
+2434078,Deep,0.95,25.28,26.23,44,Female,White/Caucasian,of Hispanic
+2434124,Thalamus,13.5,27.39,40.89,52,Male,Black/African American,not of Hispanic
+2484214,Thalamus,15.47,9.19,24.66,65,Female,White/Caucasian,of Hispanic
+2484288,Deep,4.98,49.57,55.24,62,Male,White/Caucasian,of Hispanic
+2584306,Probably Primary IVH,0,10.29,10.29,54,Female,Black/African American,not of Hispanic
+2584453,Thalamus,NA,NA,NA,55,Male,Black/African American,not of Hispanic
+2584466,Probably Primary IVH,0,41.64,42.23,55,Male,Black/African American,not of Hispanic
+2584486,Thalamus,NA,NA,NA,46,Male,Black/African American,not of Hispanic
+2624015,Thalamus,9.12,26.48,35.6,61,Male,Black/African American,not of Hispanic
+2624047,Deep,0.77,11.02,11.79,56,Female,Not Specified,of Hispanic
+2624065,Thalamus,5.07,21.55,26.62,61,Female,White/Caucasian,of Hispanic
+2624116,Thalamus,16.7,12.66,29.36,47,Female,White/Caucasian,of Hispanic
+2624260,Thalamus,5.99,2.87,8.86,59,Female,Black/African American,not of Hispanic
+2624261,Deep,10.34,20.19,30.53,25,Female,Black/African American,not of Hispanic
+2624379,Thalamus,9.7,22.63,32.33,59,Female,Black/African American,not of Hispanic
+2634049,Deep,5.94,24.56,31.45,42,Female,White/Caucasian,not of Hispanic
+2634050,Thalamus,11.54,26.73,38.27,49,Male,White/Caucasian,not of Hispanic
+2634074,Probably Primary IVH,0,49.89,49.89,71,Female,White/Caucasian,of Hispanic
+2634089,Deep,0.49,35.27,35.76,53,Male,White/Caucasian,not of Hispanic
+2634125,Deep,12.34,83.97,96.65,58,Female,White/Caucasian,not of Hispanic
+2654016,Deep,5.66,75.19,80.85,65,Female,White/Caucasian,not of Hispanic
+2654069,Deep,8.87,53.62,62.49,76,Male,White/Caucasian,not of Hispanic
+2654131,Deep,0.98,31.86,34.93,67,Female,White/Caucasian,not of Hispanic
+2654158,Thalamus,21.62,50.16,71.78,45,Male,White/Caucasian,not of Hispanic
+2654201,Thalamus,8.07,16.16,25.89,43,Female,Black/African American,not of Hispanic
+2654239,Deep,7.23,49.68,65.53,45,Female,White/Caucasian,not of Hispanic
+2654248,Deep,3.97,21.43,25.53,79,Female,White/Caucasian,not of Hispanic
+2654381,Deep,20.27,13.75,34.02,59,Female,White/Caucasian,not of Hispanic
+2664102,Thalamus,2.47,4.32,6.79,70,Female,White/Caucasian,not of Hispanic
+2664234,Lobar,0.23,45.27,45.5,72,Female,White/Caucasian,not of Hispanic
+2664243,Thalamus,15.47,20.22,35.69,68,Female,White/Caucasian,not of Hispanic
+2664292,Thalamus,25.88,12.65,38.53,55,Male,White/Caucasian,not of Hispanic
+2664456,Deep,NA,NA,NA,41,Male,White/Caucasian,not of Hispanic
+2664487,Probably Primary IVH,NA,NA,NA,75,Male,White/Caucasian,not of Hispanic
+2664495,Thalamus,31.66,48.87,80.53,58,Male,White/Caucasian,not of Hispanic
+2674025,Thalamus,1.39,2.88,4.27,78,Female,White/Caucasian,not of Hispanic
+2674029,Thalamus,8.42,23.86,32.28,62,Male,White/Caucasian,not of Hispanic
+2674040,Thalamus,3.06,25.44,28.98,61,Male,White/Caucasian,of Hispanic
+2674081,Thalamus,11.44,3.59,15.03,39,Female,White/Caucasian,not of Hispanic
+2674090,Thalamus,2.78,1.56,4.34,49,Female,Black/African American,not of Hispanic
+2674092,Thalamus,14.4,33.64,48.04,76,Male,White/Caucasian,not of Hispanic
+2684071,Deep,2.9,59.39,62.45,52,Female,Asian,not of Hispanic
+2694212,Deep,1.89,40.01,42.01,57,Female,Asian,not of Hispanic
+2694228,Thalamus,2.03,9.28,11.31,68,Female,White/Caucasian,of Hispanic
+2704031,Deep,4.74,25.28,30.02,43,Male,White/Caucasian,not of Hispanic
+2704046,Probably Primary IVH,0,16.44,16.44,69,Male,White/Caucasian,not of Hispanic
+2704333,Thalamus,21.12,23.86,44.98,42,Male,White/Caucasian,not of Hispanic
+2704440,Thalamus,18.46,12.23,31.31,75,Female,White/Caucasian,not of Hispanic
+2704493,Thalamus,9.65,22.26,31.91,53,Female,White/Caucasian,not of Hispanic
+2724110,Deep,0.37,25.94,26.31,72,Female,White/Caucasian,of Hispanic
+2724132,Thalamus,2.38,32.19,34.71,52,Female,White/Caucasian,not of Hispanic
+2724178,Thalamus,19.61,32.49,52.1,72,Male,White/Caucasian,not of Hispanic
+2724197,Thalamus,2.64,12.51,15.15,71,Female,White/Caucasian,not of Hispanic
+2724204,Probably Primary IVH,0,27.72,27.72,48,Female,White/Caucasian,not of Hispanic
+2724222,Thalamus,3.03,10.29,13.32,45,Female,White/Caucasian,of Hispanic
+2724266,Lobar,6.71,85.65,92.36,74,Female,White/Caucasian,not of Hispanic
+2724298,Thalamus,5.18,12.48,17.66,71,Male,White/Caucasian,not of Hispanic
+2724335,Deep,0.26,83.44,83.7,76,Male,White/Caucasian,not of Hispanic
+2724390,Thalamus,15.16,39.7,55.03,53,Female,White/Caucasian,not of Hispanic
+2724392,Deep,0.65,35.84,36.49,79,Male,White/Caucasian,not of Hispanic
+2724484,Thalamus,17.21,16.15,33.36,41,Female,White/Caucasian,not of Hispanic
+2744164,Thalamus,20.83,16.66,37.49,69,Female,White/Caucasian,not of Hispanic
+2744167,Thalamus,6.79,7.49,14.28,48,Female,White/Caucasian,not of Hispanic
+2754023,Thalamus,18.21,32.32,50.53,61,Female,White/Caucasian,not of Hispanic
+2754134,Deep,3.06,45.68,48.74,68,Female,White/Caucasian,not of Hispanic
+2754237,Deep,8.92,9.4,18.32,77,Female,White/Caucasian,not of Hispanic
+2754290,Thalamus,11.17,41.06,52.23,64,Female,White/Caucasian,not of Hispanic
+2754396,Thalamus,10.55,75.56,86.11,62,Male,White/Caucasian,not of Hispanic
+2754434,Thalamus,34.5,39.92,74.42,53,Female,White/Caucasian,not of Hispanic
+2754463,Deep,NA,NA,NA,45,Female,Black/African American,not of Hispanic
+2784109,Probably Primary IVH,0,34.23,34.23,68,Male,White/Caucasian,not of Hispanic
+2784159,Lobar,39.24,10.11,49.35,64,Male,White/Caucasian,not of Hispanic
+2784315,Deep,2.29,15.07,17.36,71,Female,White/Caucasian,not of Hispanic
+2784347,Deep,0.3,46.74,47.04,61,Male,White/Caucasian,not of Hispanic
+2784406,Thalamus,18.24,12.02,30.26,50,Male,White/Caucasian,not of Hispanic
+2784430,Thalamus,8.65,9.61,18.26,62,Female,White/Caucasian,not of Hispanic
+2784455,Thalamus,NA,NA,NA,66,Female,White/Caucasian,not of Hispanic
+2794079,Thalamus,11.38,4.96,16.34,71,Male,White/Caucasian,of Hispanic
+2794088,Thalamus,6.62,9.15,15.77,73,Male,White/Caucasian,of Hispanic
+2794108,Thalamus,24.02,36.29,60.87,65,Male,White/Caucasian,of Hispanic
+2794192,Thalamus,8.31,40.61,48.92,51,Female,White/Caucasian,of Hispanic
+2794226,Thalamus,6.37,39.78,46.15,63,Male,White/Caucasian,of Hispanic
+2794303,Deep,4.3,31.35,35.65,66,Male,White/Caucasian,of Hispanic
+2794398,Probably Primary IVH,0.18,41.53,42.52,58,Male,White/Caucasian,of Hispanic
+2794470,Deep,NA,NA,NA,66,Male,White/Caucasian,of Hispanic
+2804051,Thalamus,8,29.39,37.39,56,Male,Black/African American,not of Hispanic
+2804141,Thalamus,7.92,20.68,28.6,61,Male,Black/African American,not of Hispanic
+2804230,Deep,5.72,36.33,42.05,59,Male,Black/African American,not of Hispanic
+2804309,Thalamus,15.24,11.55,26.79,69,Female,White/Caucasian,not of Hispanic
+2804386,Thalamus,19.84,26.35,46.19,57,Male,White/Caucasian,not of Hispanic
+2804425,Deep,16.67,20.1,36.77,55,Female,White/Caucasian,not of Hispanic
+2804458,Thalamus,21.59,9.82,31.41,67,Female,White/Caucasian,not of Hispanic
+2824139,Thalamus,8.88,9.14,18.02,73,Male,White/Caucasian,not of Hispanic
+2824225,Deep,21.49,28.06,49.75,77,Female,White/Caucasian,not of Hispanic
+2824250,Deep,4.49,41.17,45.66,59,Male,White/Caucasian,not of Hispanic
+2824313,Probably Primary IVH,0,83.11,83.19,67,Female,White/Caucasian,not of Hispanic
+2824322,Thalamus,2.88,14.27,17.15,69,Male,White/Caucasian,not of Hispanic
+2824340,Thalamus,11.26,16.94,28.2,45,Female,White/Caucasian,not of Hispanic
+2844063,Thalamus,1.74,19.07,20.81,82,Male,White/Caucasian,not of Hispanic
+2844111,Thalamus,18.56,32.2,50.76,70,Male,White/Caucasian,not of Hispanic
+2844122,Thalamus,14.16,21.29,35.45,76,Male,White/Caucasian,not of Hispanic
+2844128,Thalamus,16.91,9.63,26.82,71,Male,White/Caucasian,not of Hispanic
+2844144,Thalamus,3.38,6.91,10.29,73,Female,White/Caucasian,not of Hispanic
+2844342,Lobar,1.31,19.64,20.95,34,Female,White/Caucasian,not of Hispanic
+2844402,Thalamus,18.32,22.39,40.71,71,Male,White/Caucasian,not of Hispanic
+2844411,Thalamus,5.46,14.93,20.81,62,Male,White/Caucasian,not of Hispanic
+2844464,Deep,NA,NA,NA,72,Female,White/Caucasian,not of Hispanic
+2874272,Thalamus,12.34,17.98,30.32,80,Male,White/Caucasian,not of Hispanic
+2874336,Thalamus,5.69,2.1,7.79,46,Male,White/Caucasian,not of Hispanic
+2874367,Deep,20.25,50.53,71.13,70,Male,White/Caucasian,not of Hispanic
+2914236,Thalamus,1.6,12.03,13.63,69,Male,White/Caucasian,not of Hispanic
+2914276,Deep,0.64,33.64,34.28,64,Female,White/Caucasian,not of Hispanic
+2914312,Deep,1.73,27.98,29.71,68,Male,White/Caucasian,not of Hispanic
+2914330,Thalamus,14.67,42.5,57.17,55,Male,White/Caucasian,not of Hispanic
+2914417,Thalamus,0.71,17.01,17.72,62,Male,White/Caucasian,not of Hispanic
+2924299,Deep,11.31,55.65,67.16,57,Male,White/Caucasian,not of Hispanic
+2924311,Thalamus,23.42,18.37,41.79,75,Male,White/Caucasian,not of Hispanic
+2924389,Deep,7.19,12.68,19.87,60,Female,White/Caucasian,not of Hispanic
+2924426,Thalamus,11.33,17.89,29.22,71,Female,White/Caucasian,not of Hispanic
+2924497,Deep,NA,NA,NA,62,Female,White/Caucasian,not of Hispanic
+2964129,Thalamus,18.22,4.94,23.16,54,Male,Black/African American,not of Hispanic
+2964140,Probably Primary IVH,0,67.8,67.8,64,Female,Black/African American,not of Hispanic
+2964242,Thalamus,36.02,39.5,76.08,63,Male,White/Caucasian,not of Hispanic
+2964359,Thalamus,22.66,21.64,50.58,53,Male,White/Caucasian,not of Hispanic
+2974137,Deep,1.31,49.52,52.19,66,Male,White/Caucasian,not of Hispanic
+2974194,Deep,2.51,70.79,73.3,81,Male,White/Caucasian,not of Hispanic
+2974199,Thalamus,20.59,7.95,28.54,44,Male,White/Caucasian,not of Hispanic
+2974271,Thalamus,10.97,9.26,20.23,38,Male,Black/African American,not of Hispanic
+2974296,Deep,17.14,104.31,121.45,62,Male,White/Caucasian,not of Hispanic
+2974325,Deep,0,44.61,44.61,75,Female,White/Caucasian,not of Hispanic
+2974365,Thalamus,8.8,39.97,48.78,60,Male,White/Caucasian,not of Hispanic
+2974370,Thalamus,14.19,10.35,24.54,66,Female,White/Caucasian,not of Hispanic
+2974471,Deep,2.18,29.67,34.09,47,Female,White/Caucasian,not of Hispanic
+2984291,Thalamus,0.97,6.29,7.26,57,Female,White/Caucasian,of Hispanic
+2984301,Thalamus,29.93,18.02,47.95,52,Male,White/Caucasian,of Hispanic
+3004247,Deep,0.02,85.67,85.69,55,Female,White/Caucasian,not of Hispanic
+3004297,Deep,0.93,21.6,22.53,59,Female,White/Caucasian,not of Hispanic
+3004421,Thalamus,12.04,5.12,17.16,63,Male,White/Caucasian,not of Hispanic
+3004446,Thalamus,14.47,21.42,36.79,59,Female,White/Caucasian,not of Hispanic
+3064218,Thalamus,3.66,13.59,17.25,76,Male,White/Caucasian,not of Hispanic
+3064244,Deep,26.07,37.54,63.74,67,Female,Black/African American,not of Hispanic
+3064293,Probably Primary IVH,0,57.67,57.7,55,Male,White/Caucasian,not of Hispanic
+3064321,Deep,0.43,63.44,63.89,65,Male,Black/African American,not of Hispanic
+3084258,Thalamus,11.14,15.46,26.8,69,Male,White/Caucasian,not of Hispanic
+3084366,Probably Primary IVH,0.31,26.89,27.2,79,Female,White/Caucasian,not of Hispanic
+3084391,Probably Primary IVH,0,37.61,37.61,45,Male,Asian,not of Hispanic
+3084457,Thalamus,21.23,39.25,60.48,61,Female,Asian,not of Hispanic
+3104461,Thalamus,2.73,18.11,20.84,57,Male,Asian,not of Hispanic
+3114449,Deep,24.46,45.28,69.74,76,Male,White/Caucasian,not of Hispanic
+3114451,Thalamus,NA,NA,NA,46,Male,White/Caucasian,not of Hispanic
+3114492,Probably Primary IVH,0,9.05,9.05,77,Female,White/Caucasian,not of Hispanic
+3114494,Thalamus,NA,NA,NA,71,Male,White/Caucasian,not of Hispanic

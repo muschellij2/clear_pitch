@@ -1,0 +1,142 @@
+patientName,ich_location,ich_volume,ivh_volume,age,sex,race
+100318,Putamen,40.42,0.41,55,Male,African American not Hispanic
+100362,Lobar,71.47,3.24,76,Male,Caucasian not Hispanic
+100365,Putamen,60,3.61,62,Female,Caucasian not Hispanic
+101306,Putamen,28.38,0,64,Female,African American not Hispanic
+101307,Lobar,31.76,2.26,57,Male,Hispanic
+101308,Thalamus,55.59,25.03,64,Male,Caucasian not Hispanic
+102317,Putamen,33.01,0,69,Female,Caucasian not Hispanic
+102322,Putamen,76.46,10.17,41,Male,African American not Hispanic
+102323,Putamen,80.04,9.8,45,Male,Caucasian not Hispanic
+102324,Lobar,28.09,0,59,Male,African American not Hispanic
+102326,Putamen,88.07,2.02,58,Male,African American not Hispanic
+102331,Putamen,60.81,18.51,43,Male,Caucasian not Hispanic
+102347,Lobar,31.47,2.01,77,Female,Caucasian not Hispanic
+102349,Lobar,42.88,1.87,66,Female,Caucasian not Hispanic
+102351,Putamen,66.61,0.09,57,Male,African American not Hispanic
+102360,Putamen,57.65,4.71,54,Female,African American not Hispanic
+102367,Putamen,53.93,6.12,52,Male,African American not Hispanic
+102374,Putamen,54.81,2.25,42,Male,Hispanic
+102391,Lobar,68.34,0.23,62,Male,Caucasian not Hispanic
+102393,Putamen,61.1,26.04,65,Male,African American not Hispanic
+102403,Putamen,55.43,0.64,73,Male,African American not Hispanic
+102406,Putamen,36.31,0.04,41,Male,African American not Hispanic
+111415,Thalamus,27.04,1.65,80,Male,Caucasian not Hispanic
+120376,Putamen,59.19,0,54,Male,African American not Hispanic
+131310,Globus Pallidus,57.91,0.74,59,Male,African American not Hispanic
+131316,Globus Pallidus,37.18,3.6,46,Female,African American not Hispanic
+131334,Putamen,33.14,0,56,Male,African American not Hispanic
+131354,Lobar,51.2,18.21,64,Male,African American not Hispanic
+133409,Putamen,15.02,1.9,76,Male,Caucasian not Hispanic
+133417,Putamen,48.12,0,70,Male,Hispanic
+134304,Putamen,28.12,0,52,Male,Caucasian not Hispanic
+134305,Putamen,19.05,0,47,Male,African American not Hispanic
+134320,Lobar,62.3,7.55,75,Female,Caucasian not Hispanic
+134327,Lobar,36.63,2.37,59,Female,Caucasian not Hispanic
+134338,Putamen,43.26,0,58,Male,African American not Hispanic
+134343,Putamen,26.21,0,59,Male,African American not Hispanic
+134345,Putamen,70.7,7.17,51,Male,Caucasian not Hispanic
+134379,Putamen,21.75,0,42,Female,Caucasian not Hispanic
+134380,Putamen,78.89,0.99,77,Male,Caucasian not Hispanic
+134381,Putamen,31.84,0,61,Female,Caucasian not Hispanic
+134382,Lobar,35.88,0,66,Male,African American not Hispanic
+134392,Putamen,48.32,0,63,Male,Caucasian not Hispanic
+134408,Putamen,68.63,24.18,33,Female,Caucasian not Hispanic
+134411,Putamen,48.45,5.47,77,Male,Caucasian not Hispanic
+134412,Putamen,46.88,0.12,62,Male,Caucasian not Hispanic
+134416,Putamen,43.6,1.02,48,Female,Caucasian not Hispanic
+152302,Putamen,46.54,0,49,Male,African American not Hispanic
+152303,Lobar,56.43,0,68,Female,Caucasian not Hispanic
+152348,Putamen,58.22,17.72,54,Female,Caucasian not Hispanic
+152353,Putamen,39.27,1.82,66,Female,Caucasian not Hispanic
+157328,Putamen,31.82,0.64,42,Male,African American not Hispanic
+157329,Putamen,57.48,2.77,66,Male,Asian or Pacific Islander
+157332,Lobar,57.05,0,76,Male,Caucasian not Hispanic
+157335,Lobar,43.15,0,77,Female,Caucasian not Hispanic
+157336,Putamen,24.22,0.94,70,Male,Asian or Pacific Islander
+157370,Putamen,27.84,0,59,Male,African American not Hispanic
+157372,Putamen,16.8,0,46,Male,Hispanic
+157399,Putamen,28.21,0,54,Male,Asian or Pacific Islander
+157410,Putamen,27.42,0,57,Male,Hispanic
+161413,Putamen,17.73,0,41,Male,Hispanic
+173312,Lobar,46.75,5.35,76,Male,Caucasian not Hispanic
+173313,Putamen,21.62,0,61,Female,African American not Hispanic
+173325,Putamen,38.71,0,59,Male,African American not Hispanic
+173339,Lobar,44.5,0.65,75,Female,Asian or Pacific Islander
+173341,Globus Pallidus,23.11,0.22,67,Female,Caucasian not Hispanic
+173361,Lobar,52.99,0.5,73,Female,Caucasian not Hispanic
+173364,Putamen,32.85,0,44,Male,Caucasian not Hispanic
+173368,Lobar,38.29,2.46,72,Male,African American not Hispanic
+173384,Putamen,31.59,0,56,Male,Caucasian not Hispanic
+173396,Lobar,28.39,0,76,Male,Caucasian not Hispanic
+173404,Lobar,32.93,4.82,53,Male,African American not Hispanic
+175387,Lobar,20.21,3.09,60,Female,Caucasian not Hispanic
+175397,Putamen,48.47,0.46,44,Male,Caucasian not Hispanic
+175405,Lobar,69.3,3.36,63,Male,Caucasian not Hispanic
+179359,Putamen,36,0.33,54,Male,Hispanic
+179373,Lobar,48.34,0.39,75,Male,Caucasian not Hispanic
+179383,Lobar,59.1,4.49,64,Male,Hispanic
+179386,Putamen,33.49,5.46,62,Male,Caucasian not Hispanic
+179394,Putamen,59.64,20.6,69,Male,Hispanic
+179395,Putamen,26.76,2.58,43,Male,African American not Hispanic
+179401,Putamen,87.05,12.69,73,Male,Caucasian not Hispanic
+179402,Putamen,56.11,0.35,78,Male,Caucasian not Hispanic
+184342,Putamen,55.87,0,77,Female,Caucasian not Hispanic
+184388,Putamen,44.13,0.3,51,Male,Caucasian not Hispanic
+191301,Lobar,23.02,0,71,Male,Caucasian not Hispanic
+191309,Lobar,74.22,0,69,Male,Caucasian not Hispanic
+191311,Lobar,42.4,0,78,Female,Caucasian not Hispanic
+191314,Putamen,42.29,0,63,Male,Caucasian not Hispanic
+191315,Thalamus,27.54,11.84,49,Female,Caucasian not Hispanic
+191319,Putamen,39.17,3.51,64,Female,African American not Hispanic
+191321,Lobar,119.91,22.08,73,Female,Caucasian not Hispanic
+191330,Lobar,36,4.35,79,Female,Caucasian not Hispanic
+191333,Putamen,32.89,6.84,39,Male,Caucasian not Hispanic
+191375,Putamen,24.81,0.1,76,Female,Caucasian not Hispanic
+191378,Lobar,55.9,0,67,Male,Caucasian not Hispanic
+191400,Putamen,36.75,0,56,Female,Caucasian not Hispanic
+205509,Lobar,44.04,5.67,62,Male,Caucasian not Hispanic
+205517,Putamen,33.31,0.6,61,Male,Caucasian not Hispanic
+205519,Putamen,37.87,0.7,59,Female,Caucasian not Hispanic
+210344,Putamen,41.02,1.33,33,Male,Hispanic
+216390,Putamen,28.51,12.6,72,Female,Caucasian not Hispanic
+216414,Putamen,35.42,1.13,45,Female,Caucasian not Hispanic
+219340,Lobar,83.38,2.74,70,Male,Caucasian not Hispanic
+219350,Thalamus,19.29,3.48,55,Male,Caucasian not Hispanic
+222337,Globus Pallidus,29.84,0.4,59,Male,Caucasian not Hispanic
+222357,Lobar,37.28,0,66,Female,African American not Hispanic
+222358,Lobar,36.18,0,78,Female,Caucasian not Hispanic
+223355,Lobar,26.49,0,80,Female,Hispanic
+223369,Putamen,44.82,0.07,60,Female,Hispanic
+223407,Putamen,49.4,0.73,48,Male,African American not Hispanic
+225502,Globus Pallidus,23.01,19.43,54,Male,African American not Hispanic
+225503,Putamen,60.51,13.24,66,Male,Caucasian not Hispanic
+225504,Lobar,19.73,0,56,Male,African American not Hispanic
+225505,Putamen,45.14,0.67,44,Male,African American not Hispanic
+225506,Putamen,34.53,6.81,50,Female,African American not Hispanic
+225507,Putamen,26.35,9.3,69,Female,Caucasian not Hispanic
+225510,Putamen,55.58,14.66,49,Male,Caucasian not Hispanic
+225511,Lobar,53.12,0,75,Male,Caucasian not Hispanic
+225515,Putamen,45.09,19.4,78,Male,Asian or Pacific Islander
+225522,Putamen,26.64,1.39,71,Female,Other or unknown
+225523,Lobar,62.34,0,72,Female,Caucasian not Hispanic
+225524,Putamen,50.26,18.72,58,Male,Hispanic
+230346,Putamen,69.85,3.22,62,Male,Caucasian not Hispanic
+230352,Putamen,37.47,0,48,Female,Caucasian not Hispanic
+230356,Lobar,36.1,0,59,Female,Caucasian not Hispanic
+230363,Lobar,61.04,2.17,78,Male,African American not Hispanic
+230366,Lobar,39.94,2.32,73,Male,African American not Hispanic
+230371,Putamen,31.18,1.38,54,Female,African American not Hispanic
+230377,Putamen,24.72,0,54,Female,Caucasian not Hispanic
+232512,Lobar,87.72,4.48,73,Male,African American not Hispanic
+232513,Putamen,20.86,0,53,Male,African American not Hispanic
+232514,Globus Pallidus,50.38,5.65,59,Male,African American not Hispanic
+232516,Lobar,24.66,1.37,75,Female,Caucasian not Hispanic
+232521,Putamen,30.01,0.69,45,Male,African American not Hispanic
+232526,Putamen,54.86,0.73,55,Male,Caucasian not Hispanic
+234385,Putamen,24.73,0,53,Male,Caucasian not Hispanic
+265389,Putamen,32.8,0,69,Male,Caucasian not Hispanic
+265398,Putamen,47.8,2.78,49,Male,Caucasian not Hispanic
+289518,Putamen,95.57,0,78,Male,Asian or Pacific Islander
+289525,Putamen,38.91,0,65,Male,Hispanic
+301520,Discrepancy,22.24,0,54,Female,Caucasian not Hispanic
