@@ -20,7 +20,7 @@ batches = c("batch", "test_set")
 batch_type = batches[1]
 
 fname = switch(batch_type,
-  batch = "filenames_df.rds",
+  batch = "all_filenames_df.rds",
   "test_set" = "test_filenames_df.rds")
 filenames = file.path(res_dir, fname)
 df = read_rds(filenames)
@@ -34,13 +34,16 @@ if (batch_type == "batch") {
 model_groups = "train"
 models = c("ranger", "logistic", "leekasso",
   "ichmodel")
+studies = c("CLEAR", "BOTH")
 
 run_frac = 0.1
 eg = expand.grid(n4 = c(FALSE, TRUE),
                  run_frac = run_frac,
+                 group = groups,                  
                  stratified = c(FALSE, TRUE),
                  model = models,                 
                  model_group = model_groups,  
+                 study = studies,                 
                  stringsAsFactors = FALSE)
 eg = eg %>% 
   mutate(
@@ -52,6 +55,7 @@ eg = eg %>%
       ifelse(run_frac != 0.1, 
         paste0(run_frac, "_"),  ""),
       ifelse(stratified, "stratified_", ""),   
+      ifelse(study == "CLEAR", "", "combined_"),      
       app,
       "model.rds"))) %>% 
   select(-app)
@@ -64,16 +68,13 @@ mod_stub = sub("ranger_", "", mod_stub)
 mod_stub[grepl("ichmodel", mod_stub)] = "ichmodel"
 
 
-group = groups[3]
-
-eg = eg %>% 
-  mutate(outfile = file.path(mod_dir, 
+btype = rep(batch_type, nrow(eg))
+eg$outfile = file.path(mod_dir, 
 	  paste0("dice_", 
 	    mod_stub, "_",
-	    ifelse(batch_type != "batch", 
-	      batch_type, group),
+	    if_else(btype != "batch", 
+	      btype, eg$group),
 	    ".rds"))
-	)
 
 res = vector(mode = "list", 
 	length = nrow(eg))
@@ -85,6 +86,7 @@ for (iscen in seq(nrow(eg))) {
 		x$stratified = eg$stratified[iscen]
 		x$n4 = eg$n4[iscen]
 		x$model = eg$model[iscen]
+		x$study = eg$study[iscen]
 		res[[iscen]] = x
 	}
 }
@@ -106,7 +108,8 @@ df$diff_vol = (df$vol - df$pred_vol)/1000
 df$avg_vol = (df$vol + df$pred_vol) / (2 * 1000)
 
 sds = df %>% 
-	group_by(model, n4, smooth, stratified) %>% 
+	group_by(model, n4, smooth, stratified, study, 
+		group) %>% 
 	summarize(
 		mn = mean(diff_vol, na.rm = TRUE),
 		sd = sd(diff_vol, na.rm = TRUE)) %>% 
@@ -115,6 +118,55 @@ sds = df %>%
 		upper = mn + qnorm(0.975)*sd
 		)
 
+dices = df %>% 
+	group_by(model, n4, smooth, stratified, study, 
+		group) %>% 
+	summarize(
+		mn = mean(dice, na.rm = TRUE),
+		sd = sd(dice, na.rm = TRUE)) %>% 
+	mutate(
+		lower = mn - qnorm(0.975)*sd,
+		upper = mn + qnorm(0.975)*sd
+		) 
+dices %>% filter(n4 == "Standard HU", 
+	model == "ranger", 
+	study == "CLEAR") %>% 
+	arrange(group, smooth, stratified, study)
+
+
+df = distinct(df)
+bad_scans = c("4108-279_20110224183701", # half a head
+  "4398-279_20131203063327" # CTA scan
+  )
+df = df %>% 
+	filter(!scan %in% bad_scans)
+df$pt_type = if_else(grepl("^4", df$scan),
+	"CLEAR", "MISTIE")
+xdf = df
+
+
+fname = file.path(res_dir,
+	paste0("dice_compare_groups_", 
+		batch_type, 
+		".png"))
+
+png(fname, res = 600, width = 5, height=5,
+    units = "in", type = "cairo")
+ddf = xdf %>% 
+	filter(n4 %in% "Standard HU",
+		smoothed)
+
+dice = ddf %>% ggplot(
+	aes(y = dice, x = group, colour = group)) + 
+	geom_boxplot() + 
+	facet_grid(study + stratified  ~ model) +
+	ylim(c(0,1))+ geom_hline(yintercept = 0.9)
+print(dice)
+dev.off()
+
+group = run_group = "test"
+df = xdf %>% 
+	filter(group == run_group)
 
 fname = file.path(res_dir,
 	paste0("dice_compare_smooth_", 
@@ -123,10 +175,14 @@ fname = file.path(res_dir,
 
 png(fname, res = 600, width = 5, height=5,
     units = "in", type = "cairo")
-dice = df %>% ggplot(
-	aes(y = dice, x =n4, colour = smooth)) + 
+ddf = df %>% 
+	filter(n4 %in% "Standard HU")
+
+dice = ddf %>% ggplot(
+	aes(y = dice, x =  smooth)) + 
 	geom_boxplot() + 
-	facet_wrap(stratified ~ model, nrow = 2)
+	facet_grid(study + stratified ~ model) +
+	ylim(c(0,1)) + geom_hline(yintercept = 0.9)
 print(dice)
 dev.off()
 
@@ -182,6 +238,10 @@ print(dice2)
 dev.off()
 
 
+vol_df = xdf %>% filter(n4 == "Standard HU", 
+	stratified == "Case-Control Sampling",
+	smoothed)
+
 
 vol = df %>% ggplot(
 	aes(x = pred_vol / 1000, 
@@ -195,6 +255,60 @@ vol = df %>% ggplot(
 	ylab("Manual Volume") +
 	xlab("Automated Volume")
 
+
+
+
+fname = file.path(res_dir,
+	paste0("volume_compare_best",
+		".png")
+	)	
+png(fname, res = 600, width = 12, height=4,
+    units = "in", type = "cairo")	
+v1  = (vol_df %>% 
+	filter(model == "ranger")) %>% 
+ggplot(
+	aes(x = pred_vol / 1000, 
+		y = vol / 1000)) + 
+	geom_point() +
+	geom_abline(intercept = 0, slope = 1) + 
+	  stat_smooth_func(geom="text",
+	  	method="lm",
+	  	hjust=0,parse=TRUE) +
+	geom_smooth(method = "lm", se = FALSE) +
+	ylab("Manual Volume") +
+	xlab("Automated Volume") + facet_grid(study ~ group ,
+		scales = "free_x") +
+	geom_point(aes(colour = pt_type))
+
+print(v1)
+dev.off()
+
+fname = file.path(res_dir,
+	paste0("volume_compare_best_CLEAR", 
+		".png")
+	)	
+png(fname, res = 600, width = 12, height=4,
+    units = "in", type = "cairo")	
+v1 = (vol_df %>% 
+	filter(model == "ranger",
+		pt_type == "CLEAR")) %>% 
+ggplot(
+	aes(x = pred_vol / 1000, 
+		y = vol / 1000)) + 
+	geom_point() +
+	geom_abline(intercept = 0, slope = 1) + 
+	  stat_smooth_func(geom="text",
+	  	method="lm",
+	  	hjust=0,parse=TRUE) +
+	geom_smooth(method = "lm", se = FALSE) +
+	ylab("Manual Volume") +
+	xlab("Automated Volume") + facet_grid(study ~ group ,
+		scales = "free_x")
+print(v1)
+dev.off()
+
+
+
 fname = file.path(res_dir,
 	paste0("volume_compare_free_", 
 		batch_type, "_", group, 
@@ -203,10 +317,11 @@ fname = file.path(res_dir,
 png(fname, res = 600, width = 12, height=4,
     units = "in", type = "cairo")	
 v1 = vol + facet_grid(model ~ n4 + 
-	smooth + stratified,
+	smooth + stratified + study,
 		scales = "free_y")
 print(v1)
 dev.off()
+
 
 for (model in models) {
 	fname = file.path(res_dir,
@@ -242,24 +357,33 @@ fname = file.path(res_dir,
 	"ba_volume.png")
 png(fname, res = 600, width = 5, height=5,
     units = "in", type = "cairo")	
-ba = df %>% ggplot(
-	aes(y = avg_vol, 
-		x = diff_vol,
-		colour = model)) + 
+
+ss = sds %>% 
+	filter(n4 == "Standard HU", 
+	stratified == "Case-Control Sampling",
+	smooth == "Smoothed") %>% 
+	filter(model == "ranger")	
+vdf = vol_df %>% 
+	filter(model == "ranger") 
+ba = vdf %>% 
+	ggplot(
+	aes(x = avg_vol, 
+		y = diff_vol,
+		colour = group)) + 
 	geom_point() +
 	geom_hline(yintercept = 0) + 
-	geom_hline(data = sds,
+	geom_hline(data = ss,
 		aes(colour = group,
 			yintercept = lower),
 		linetype = "dashed") +
-	geom_hline(data = sds,
+	geom_hline(data = ss,
 		aes(colour = group,
 			yintercept = upper),
 		linetype = "dashed") +	
 	geom_smooth(se = FALSE) +
-	facet_grid(n4 ~ smooth + stratified) +
-	ylab("Mean of Manual/Auto") +
-	xlab("Difference: Manual - Auto")
+	facet_grid(study ~ group, scales = "free_x") +
+	xlab("Mean of Manual/Auto") +
+	ylab("Difference: Manual - Auto")
 print(ba)
 dev.off()
 	# geom_line(stat = "density") + 

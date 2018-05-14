@@ -28,7 +28,7 @@ batches = c("batch", "test_set")
 batch_type = batches[1]
 
 fname = switch(batch_type,
-  batch = "filenames_df.rds",
+  batch = "all_filenames_df.rds",
   "test_set" = "test_filenames_df.rds")
 filenames = file.path(res_dir, fname)
 
@@ -41,12 +41,13 @@ if (batch_type == "batch") {
 model_groups = "train"
 model = c("ranger", "logistic", "leekasso",
     "ichmodel")
+studies = c("CLEAR", "BOTH")
 
 run_frac = 0.1
 
 iscen = as.numeric(Sys.getenv("SGE_TASK_ID"))
 if (is.na(iscen)) {
-  iscen = 37
+  iscen = 67
 }
 
 
@@ -56,12 +57,10 @@ eg = expand.grid(n4 = c(FALSE, TRUE),
                  group = groups, 
                  model = model,                 
                  model_group = model_groups,  
+                 study = studies,                      
                  stringsAsFactors = FALSE)
 eg = eg %>% 
   filter(!(model == "ichmodel" & (n4 | stratified)))
-
-
-df = read_rds(filenames)
 
 
 n4 = eg$n4[iscen]
@@ -69,6 +68,24 @@ group = eg$group[iscen]
 model_group = eg$model_group[iscen]
 stratified = eg$stratified[iscen]
 run_frac = eg$run_frac[iscen]
+study = eg$study[iscen]
+
+df = read_rds(filenames)
+
+# keep first scan 
+df = df %>% 
+  mutate(d2 = as.numeric(date)) %>% 
+  arrange(id, d2) %>% 
+  group_by(id) %>% 
+  dplyr::slice(1) %>% 
+  select(-d2)
+
+if (study == "CLEAR") {
+  df = df %>% 
+    filter(study == "CLEAR")
+}
+
+
 eg = eg %>% 
   mutate(
     app = ifelse(model_group == "train",
@@ -79,6 +96,7 @@ eg = eg %>%
       ifelse(run_frac != 0.1, 
         paste0(run_frac, "_"),  ""),
       ifelse(stratified, "stratified_", ""),   
+      ifelse(study == "CLEAR", "", "combined_"),      
       app,
       "model.rds"))) %>% 
   select(-app)

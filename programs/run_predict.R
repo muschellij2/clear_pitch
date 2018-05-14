@@ -26,7 +26,7 @@ batch_type = batches[1]
 res_dir = file.path(root_dir, "results")
 
 fname = switch(batch_type,
-  batch = "filenames_df.rds",
+  batch = "all_filenames_df.rds",
   "test_set" = "test_filenames_df.rds")
 
 filenames = file.path(res_dir, fname)
@@ -34,10 +34,11 @@ df = read_rds(filenames)
 
 iscen = as.numeric(Sys.getenv("SGE_TASK_ID"))
 if (is.na(iscen)) {
-  iscen = 3
+  iscen = 24
 }
 model_groups = "train"
 model = c("ranger", "logistic", "leekasso")
+studies = c("CLEAR", "BOTH")
 
 run_frac = 0.1
 eg = expand.grid(n4 = c(FALSE, TRUE),
@@ -45,13 +46,9 @@ eg = expand.grid(n4 = c(FALSE, TRUE),
                  stratified = c(FALSE, TRUE),
                  model_group = model_groups,
                  model = model,  
+                 study = studies,
                  stringsAsFactors = FALSE)
 
-n4 = eg$n4[iscen]
-model_group = eg$model_group[iscen]
-stratified = eg$stratified[iscen]
-model = eg$model[iscen]
-run_frac = eg$run_frac[iscen]
 eg = unique(eg)
 eg = eg %>% 
   mutate(
@@ -64,9 +61,19 @@ eg = eg %>%
       ifelse(run_frac != 0.1, 
         paste0(run_frac, "_"),  ""),
       ifelse(stratified, "stratified_", ""),   
+      ifelse(study == "CLEAR", "", "combined_"),       
       app,
       "model.rds"))) %>% 
   select(-app)
+
+
+n4 = eg$n4[iscen]
+model_group = eg$model_group[iscen]
+stratified = eg$stratified[iscen]
+model = eg$model[iscen]
+run_frac = eg$run_frac[iscen]
+study = eg$study[iscen]
+  
 mod_file = eg$outfile[iscen]
 mod_stub = tools::file_path_sans_ext(
   basename(mod_file))
@@ -130,7 +137,7 @@ model = reduce_train_object(model)
 # sample only 10
 # df = df %>% 
 #   sample_n(10)
-iid = 94
+iid = 6
 
 for (iid in seq(nrow(df))) {
   

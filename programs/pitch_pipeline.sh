@@ -20,7 +20,7 @@ Rnosave process.R -N PROC \
 Rnosave fit_model.R -N MODEL -t 5-8 \
 	-l mem_free=140G,h_vmem=141G -hold_jid PROC
 
-Rnosave run_predict.R -N PRED -t 1-12 \
+Rnosave run_predict.R -N PRED -t 13 \
 	-l mem_free=60G,h_vmem=61G -hold_jid MODEL \
 	-hold_jid PROC
 
@@ -29,9 +29,11 @@ Rnosave run_predict.R -N PRED -t 1-12 \
 
 # dice tasks 25-36 are when validation set 
 # in there
-Rnosave compute_dice.R -N DICE -t 1-39 \
+Rnosave compute_dice.R -N DICE -t 40-78 \
 	-hold_jid_ad PRED
 
-Rnosave plot_results.R -N PLOTTER -t 1-36 
+Rnosave plot_results.R -N PLOTTER -t 40-78 \
+	-hold_jid_ad DICE
 
 
+Rnosave dice_results.R -N DPLOT
