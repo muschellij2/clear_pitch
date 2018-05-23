@@ -79,8 +79,17 @@ df$stub = sub("_CT", "", nii.stub(df$CT,
 df = df %>% 
   arrange(study, batch, patientName)
 
+df = df %>% 
+  mutate(d2 = as.numeric(date)) %>% 
+  arrange(id, d2) %>% 
+  group_by(id) %>% 
+  mutate(scan_index = seq(n())) %>% 
+  select(-d2)
+
 outfile = file.path(res_dir, "all_filenames_df.rds")
 write_rds(df, path = outfile)
+
+
 
 
 df = df %>% 

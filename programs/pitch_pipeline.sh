@@ -9,7 +9,7 @@ Rnosave make_df_first_batch.R -N DF \
 # n_ids=23
 # n_ids=
 Rnosave process.R -N PROC \
-	-l mem_free=22G,h_vmem=23G -t 76-84
+	-l mem_free=42G,h_vmem=43G -t 3-93
 
 # Rnosave make_df_test_set.R -N TESTDF \
 # 	-l mem_free=1G,h_vmem=2G 
@@ -20,7 +20,7 @@ Rnosave process.R -N PROC \
 Rnosave fit_model.R -N MODEL -t 5-8 \
 	-l mem_free=140G,h_vmem=141G -hold_jid PROC
 
-Rnosave run_predict.R -N PRED -t 13 \
+Rnosave run_predict.R -N PRED -t 1-24 \
 	-l mem_free=60G,h_vmem=61G -hold_jid MODEL \
 	-hold_jid PROC
 
@@ -29,10 +29,10 @@ Rnosave run_predict.R -N PRED -t 13 \
 
 # dice tasks 25-36 are when validation set 
 # in there
-Rnosave compute_dice.R -N DICE -t 40-78 \
-	-hold_jid_ad PRED
+Rnosave compute_dice.R -N DICE -t 1-78 \
+	-hold_jid PRED
 
-Rnosave plot_results.R -N PLOTTER -t 40-78 \
+Rnosave plot_results.R -N PLOTTER -t 1-78 \
 	-hold_jid_ad DICE
 
 

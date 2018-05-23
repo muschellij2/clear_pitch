@@ -47,7 +47,7 @@ run_frac = 0.1
 
 iscen = as.numeric(Sys.getenv("SGE_TASK_ID"))
 if (is.na(iscen)) {
-  iscen = 45
+  iscen = 1
 }
 
 

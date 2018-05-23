@@ -52,6 +52,7 @@ tag_df$keyword = make.names(tag_df$keyword)
 tag_df$keyword = gsub(".", "", tag_df$keyword, fixed = TRUE)
 colnames(df) = c("fname", tag_df$keyword)
 
+# df$AcquisitionTime = df$ContentTime = NULL
 df = df %>% 
   separate(col = fname, into = c("patientName", "date", "time"),
            sep = "_") %>% 
@@ -60,6 +61,7 @@ df = df %>%
   distinct()
 df$id = pname_to_pid(sub("-", "", df$patientName))
 
+nrow(df)
 scan_df = df
 
 #################################
@@ -93,6 +95,9 @@ if (n_missing > 0) {
 scan_df = left_join(df, scan_df, by = c("id", "datetime"))
 
 make_numeric = function(x) {
+  if (is.character(x)) {
+    x[ x %in% ""] = NA
+  }
   na_x = is.na(x)
   num_x = as.numeric(x)
   na_numx = is.na(num_x)
@@ -107,7 +112,8 @@ make_numeric = function(x) {
 scan_df = scan_df %>% 
   mutate_at(.vars = vars( -Manufacturer,
                           -ManufacturerModelName), .funs = make_numeric)
-
-
+scan_df$CTDIvol = as.numeric(scan_df$CTDIvol)
+scan_df$KVP[ scan_df$id == "0301-191" &
+               scan_df$datetime == "200602011148"] = 120
 
 write_rds(scan_df, path = "mistie_scanning_params.rds")

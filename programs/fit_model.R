@@ -73,11 +73,13 @@ if (!all(file.exists(
   df = df[ df$train %in% group, ]
   # keep first scan 
   df = df %>% 
-    mutate(d2 = as.numeric(date)) %>% 
-    arrange(id, d2) %>% 
-    group_by(id) %>% 
-    dplyr::slice(1) %>% 
-    select(-d2)
+    filter(scan_index == 1)  
+  # df = df %>% 
+  #   mutate(d2 = as.numeric(date)) %>% 
+  #   arrange(id, d2) %>% 
+  #   group_by(id) %>% 
+  #   dplyr::slice(1) %>% 
+  #   select(-d2)
 
   df$stub = paste0(df$stub, ifelse(n4, "_n4", ""))
 
@@ -187,7 +189,8 @@ if (!all(file.exists(
       importance = "permutation"
       # save.memory = TRUE
     )
-    model = reduce_train_object(model)    
+    model = reduce_train_object(model)
+    model$scans = df$scan        
     write_rds(model, path = outfile)
   }
 
@@ -203,7 +206,8 @@ if (!all(file.exists(
     )
     model = reduce_train_object(model)    
     model$finalModel = reduce_glm_mod(
-      model$finalModel)    
+      model$finalModel)  
+    model$scans = df$scan        
     write_rds(model, path = log_outfile)
   }  
 
@@ -251,6 +255,7 @@ if (!all(file.exists(
     model = reduce_train_object(model)    
     model$finalModel = reduce_glm_mod(
       model$finalModel)
+    model$scans = df$scan
     write_rds(model, path = leek_outfile)
   }  
 

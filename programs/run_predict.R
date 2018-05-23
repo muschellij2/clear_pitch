@@ -137,7 +137,7 @@ model = reduce_train_object(model)
 # sample only 10
 # df = df %>% 
 #   sample_n(10)
-iid = 6
+iid = 1
 
 for (iid in seq(nrow(df))) {
   

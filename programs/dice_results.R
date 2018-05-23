@@ -23,7 +23,7 @@ fname = switch(batch_type,
   batch = "all_filenames_df.rds",
   "test_set" = "test_filenames_df.rds")
 filenames = file.path(res_dir, fname)
-df = read_rds(filenames)
+demog_df = read_rds(filenames)
 if (batch_type == "batch") {
   groups = c("train", "test", "validation")
 } else {
@@ -86,8 +86,10 @@ for (iscen in seq(nrow(eg))) {
 		x$stratified = eg$stratified[iscen]
 		x$n4 = eg$n4[iscen]
 		x$model = eg$model[iscen]
-		x$study = eg$study[iscen]
+		x$training_study = eg$study[iscen]
 		res[[iscen]] = x
+	} else {
+		messae(paste0(outfile, " not found"))
 	}
 }
 
@@ -108,7 +110,7 @@ df$diff_vol = (df$vol - df$pred_vol)/1000
 df$avg_vol = (df$vol + df$pred_vol) / (2 * 1000)
 
 sds = df %>% 
-	group_by(model, n4, smooth, stratified, study, 
+	group_by(model, n4, smooth, stratified, training_study, 
 		group) %>% 
 	summarize(
 		mn = mean(diff_vol, na.rm = TRUE),
@@ -119,7 +121,7 @@ sds = df %>%
 		)
 
 dices = df %>% 
-	group_by(model, n4, smooth, stratified, study, 
+	group_by(model, n4, smooth, stratified, training_study, 
 		group) %>% 
 	summarize(
 		mn = mean(dice, na.rm = TRUE),
@@ -130,8 +132,13 @@ dices = df %>%
 		) 
 dices %>% filter(n4 == "Standard HU", 
 	model == "ranger", 
-	study == "CLEAR") %>% 
-	arrange(group, smooth, stratified, study)
+	training_study == "CLEAR") %>% 
+	arrange(group, smooth, stratified, training_study)
+
+dices %>% filter(n4 == "Standard HU", 
+	model == "ranger", 
+	training_study == "BOTH") %>% 
+	arrange(group, smooth, stratified, training_study)
 
 
 df = distinct(df)
@@ -157,9 +164,9 @@ ddf = xdf %>%
 		smoothed)
 
 dice = ddf %>% ggplot(
-	aes(y = dice, x = group, colour = group)) + 
+	aes(y = dice, x = group, colour = pt_type)) + 
 	geom_boxplot() + 
-	facet_grid(study + stratified  ~ model) +
+	facet_grid(training_study + stratified ~ model) +
 	ylim(c(0,1))+ geom_hline(yintercept = 0.9)
 print(dice)
 dev.off()
@@ -181,7 +188,7 @@ ddf = df %>%
 dice = ddf %>% ggplot(
 	aes(y = dice, x =  smooth)) + 
 	geom_boxplot() + 
-	facet_grid(study + stratified ~ model) +
+	facet_grid(training_study + stratified ~ model) +
 	ylim(c(0,1)) + geom_hline(yintercept = 0.9)
 print(dice)
 dev.off()
@@ -276,7 +283,8 @@ ggplot(
 	  	hjust=0,parse=TRUE) +
 	geom_smooth(method = "lm", se = FALSE) +
 	ylab("Manual Volume") +
-	xlab("Automated Volume") + facet_grid(study ~ group ,
+	xlab("Automated Volume") + facet_grid(
+		training_study ~ group ,
 		scales = "free_x") +
 	geom_point(aes(colour = pt_type))
 
@@ -302,7 +310,8 @@ ggplot(
 	  	hjust=0,parse=TRUE) +
 	geom_smooth(method = "lm", se = FALSE) +
 	ylab("Manual Volume") +
-	xlab("Automated Volume") + facet_grid(study ~ group ,
+	xlab("Automated Volume") + facet_grid(
+		training_study ~ group ,
 		scales = "free_x")
 print(v1)
 dev.off()
@@ -317,7 +326,7 @@ fname = file.path(res_dir,
 png(fname, res = 600, width = 12, height=4,
     units = "in", type = "cairo")	
 v1 = vol + facet_grid(model ~ n4 + 
-	smooth + stratified + study,
+	smooth + stratified + training_study,
 		scales = "free_y")
 print(v1)
 dev.off()
@@ -381,7 +390,8 @@ ba = vdf %>%
 			yintercept = upper),
 		linetype = "dashed") +	
 	geom_smooth(se = FALSE) +
-	facet_grid(study ~ group, scales = "free_x") +
+	facet_grid(training_study ~ group, 
+		scales = "free_x") +
 	xlab("Mean of Manual/Auto") +
 	ylab("Difference: Manual - Auto")
 print(ba)

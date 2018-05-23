@@ -32,7 +32,7 @@ df$outfile = file.path(df$id_proc_dir,
 n_ids = nrow(df)
 iid = as.numeric(Sys.getenv("SGE_TASK_ID"))
 if (is.na(iid)) {
-  iid = 76
+  iid = 112
 }
 
 id = df$id[iid]
