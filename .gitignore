@@ -8,3 +8,4 @@ results/*.png
 PITCH_IVH/*.csv
 PITCH_IVH/*.rds
 PITCH_IVH/*.Rda
+*scanning*.rds
