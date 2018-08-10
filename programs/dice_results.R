@@ -89,7 +89,7 @@ for (iscen in seq(nrow(eg))) {
 		x$training_study = eg$study[iscen]
 		res[[iscen]] = x
 	} else {
-		messae(paste0(outfile, " not found"))
+		message(paste0(outfile, " not found"))
 	}
 }
 
@@ -108,6 +108,16 @@ df$smooth = factor(df$smooth,
 
 df$diff_vol = (df$vol - df$pred_vol)/1000
 df$avg_vol = (df$vol + df$pred_vol) / (2 * 1000)
+
+
+df = distinct(df)
+bad_scans = c("4108-279_20110224183701", # half a head
+  "4398-279_20131203063327" # CTA scan
+  )
+df = df %>% 
+	filter(!scan %in% bad_scans)
+df$pt_type = if_else(grepl("^4", df$scan),
+	"CLEAR", "MISTIE")
 
 sds = df %>% 
 	group_by(model, n4, smooth, stratified, training_study, 
@@ -141,14 +151,6 @@ dices %>% filter(n4 == "Standard HU",
 	arrange(group, smooth, stratified, training_study)
 
 
-df = distinct(df)
-bad_scans = c("4108-279_20110224183701", # half a head
-  "4398-279_20131203063327" # CTA scan
-  )
-df = df %>% 
-	filter(!scan %in% bad_scans)
-df$pt_type = if_else(grepl("^4", df$scan),
-	"CLEAR", "MISTIE")
 xdf = df
 
 

@@ -32,7 +32,7 @@ df$outfile = file.path(df$id_proc_dir,
 n_ids = nrow(df)
 iid = as.numeric(Sys.getenv("SGE_TASK_ID"))
 if (is.na(iid)) {
-  iid = 112
+  iid = 201
 }
 
 id = df$id[iid]
@@ -42,6 +42,9 @@ dir.create(id_proc_dir, showWarnings = FALSE)
 img = df$CT[iid]
 msk = df$Msk[iid]
 
+if (is.na(msk)) {
+  stop("Mask not found!")
+}
 ss_file = file.path(id_proc_dir, 
   "brain.nii.gz")
 mask_file = file.path(id_proc_dir, 

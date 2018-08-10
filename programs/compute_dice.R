@@ -74,11 +74,8 @@ df = read_rds(filenames)
 
 # keep first scan 
 df = df %>% 
-  mutate(d2 = as.numeric(date)) %>% 
-  arrange(id, d2) %>% 
-  group_by(id) %>% 
-  dplyr::slice(1) %>% 
-  select(-d2)
+  filter(scan_index == 1)  
+
 
 if (study == "CLEAR") {
   df = df %>% 

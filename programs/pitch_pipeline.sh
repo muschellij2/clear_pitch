@@ -8,8 +8,8 @@ Rnosave make_df_first_batch.R -N DF \
 
 # n_ids=23
 # n_ids=
-Rnosave process.R -N PROC \
-	-l mem_free=42G,h_vmem=43G -t 3-93
+Rnosave process.R -N PROC -hold_jid DF \
+	-l mem_free=42G,h_vmem=43G -t 1-223
 
 # Rnosave make_df_test_set.R -N TESTDF \
 # 	-l mem_free=1G,h_vmem=2G 
